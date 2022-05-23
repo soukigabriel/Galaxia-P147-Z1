@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Jump(IsTouchingTheGround());
+        Jump(/*IsTouchingTheGround()*/);
     }
 
     private void FixedUpdate()
@@ -61,11 +61,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Si el personaje esta tocando el suelo, y solo en el estado de juego inGame, al presionar el boton asociado al input Jump este se impulsara hacia arriba.
-    void Jump(bool isTouchingTheGround)
+    void Jump(/*bool isTouchingTheGround*/)
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
-            if (isTouchingTheGround && Input.GetButtonDown("Jump"))
+            if (/*isTouchingTheGround && */Input.GetButtonDown("Jump"))
             {
                 //Debug.Log("Jump");
                 m_rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

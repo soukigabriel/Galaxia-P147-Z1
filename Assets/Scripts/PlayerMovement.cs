@@ -25,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Offset para posicionar el inicio del Raycast utilizado en el metodo IsTouchingTheGround()")]
     Vector3 pivotOffset;
 
+    //Las siguientes variables estan relacionadas con las animaciones del personaje
+    public Animator m_Animator;
+    const string STATE_ON_THE_GROUND = "isOnTheGround";
+    const string STATE_RUNNING = "isRunning";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +57,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics.Raycast(this.transform.position - pivotOffset, Vector3.down, rayLenght, groundMask))
         {
+            m_Animator.SetBool(STATE_ON_THE_GROUND, true);
             return true;
         }
         else
         {
+            m_Animator.SetBool(STATE_ON_THE_GROUND, false);
             return false;
         }
     }
@@ -94,6 +101,14 @@ public class PlayerMovement : MonoBehaviour
         {
             FlipCharacter(horizontalInput);
             m_rigidBody.velocity = new Vector3(horizontalInput.x * speed, m_rigidBody.velocity.y, m_rigidBody.velocity.z);
+            if(m_rigidBody.velocity.x > 0.1f || m_rigidBody.velocity.x < -0.1f)
+            {
+                m_Animator.SetBool(STATE_RUNNING, true);
+            }
+            else
+            {
+                m_Animator.SetBool(STATE_RUNNING, false);
+            }
         }
     }
 

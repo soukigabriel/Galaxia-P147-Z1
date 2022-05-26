@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { mainMenu, pause, inGame, gameOver };
+public enum GameState { mainMenu, pause, inGame, courseMenu, gameOver };
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedInstance;
     public GameState currentGameState;
+
+    public int platziCoins;
 
 
 
@@ -22,7 +24,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void MainMenu()
@@ -61,14 +63,22 @@ public class GameManager : MonoBehaviour
             case GameState.gameOver:
                 //Implementar logica de game over
                 break;
+            case GameState.courseMenu:
+                currentGameState = GameState.courseMenu;
+                
+                break;
         }
 
         currentGameState = newGameState;
     }
 
+    public void CourseMenu()
+    {
+        SetGameState(GameState.courseMenu);
+    }
     private void Awake()
     {
-        if(sharedInstance == null)
+        if (sharedInstance == null)
         {
             sharedInstance = this;
         }

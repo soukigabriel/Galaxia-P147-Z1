@@ -9,14 +9,15 @@ public class CursosManager : MonoBehaviour
 
     public static CursosManager sharedInstance;
     public Canvas MenuCursosCanvas;
+    public GameObject MinijuegoQuiz;
 
     public Button cursocohete, cursobitcoin, cursohacker, salir;
     public Text platziCoins, platziRank;
 
     /*el array de cursosTomados representa si un curso ya ha sido tomado para no poder repetir, segun su posicion son: 
-     1- cohetes 
-     2- bitcoin
-     3- hacker
+     0- cohetes 
+     1- bitcoin
+     2- hacker
      */
     public bool[] cursosTomados = {false, false, false};
     
@@ -41,10 +42,17 @@ public class CursosManager : MonoBehaviour
         
     }
 
-    public void ShowCursosMenu(int platziCoins, int platziRank){
-        this.platziCoins.text = "PlatziCoins: " + platziCoins.ToString();
-        this.platziRank.text = "PlatziRank: " + platziRank.ToString();
+    public void ShowCursosMenu(){
+        this.platziCoins.text = "PlatziCoins: " + GameManager.sharedInstance.platziCoins.ToString();
+        this.platziRank.text = "PlatziRank: " + GameManager.sharedInstance.platziRank.ToString();
         MenuCursosCanvas.enabled = true;
+        
+        if(cursosTomados[0])
+            cursocohete.gameObject.GetComponent<Image>().color = Color.green;
+        if(cursosTomados[1])
+            cursobitcoin.gameObject.GetComponent<Image>().color = Color.green;
+        if(cursosTomados[2])
+            cursohacker.gameObject.GetComponent<Image>().color = Color.green;
     }
     public void HideCursosMenu(){
         MenuCursosCanvas.enabled = false;
@@ -52,22 +60,31 @@ public class CursosManager : MonoBehaviour
     }
 
     public void TomarCursoCohetes(){
-        if(!cursosTomados[0])
-            Debug.Log("curso de cohetes se curso");
-
-        SceneManager.LoadScene("Quiz");
+        if(!cursosTomados[0] && GameManager.sharedInstance.platziRank >= 300){
+            MinijuegoQuiz.SetActive(true); // activa el canvas del quiz
+            QuizManager.sharedInstance.retry("cohetes"); // inicializa segun el curso
+            MenuCursosCanvas.enabled = false;
+            Debug.Log("hola");
+        }   
     }
 
     public void TomarCursoBitcoin(){
-
+        if(!cursosTomados[1] && GameManager.sharedInstance.platziRank >= 700){
+            MinijuegoQuiz.SetActive(true);
+            QuizManager.sharedInstance.retry("bitcoin");
+            MenuCursosCanvas.enabled = false;
+        }
     }
 
     public void TomarCursoHacker(){
-
+        if(!cursosTomados[2] && GameManager.sharedInstance.platziRank >= 800){
+            MinijuegoQuiz.SetActive(true);
+            QuizManager.sharedInstance.retry("hacker");
+            MenuCursosCanvas.enabled = false;
+        }
     }
 
     public void BotonSalir(){
-        Debug.Log("salida");
         HideCursosMenu();
         GameManager.sharedInstance.StartGame();
         

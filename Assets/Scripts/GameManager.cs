@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.courseMenu:
                 currentGameState = GameState.courseMenu;
-                CursosManager.sharedInstance.ShowCursosMenu(platziCoins, platziRank);
+                CursosManager.sharedInstance.ShowCursosMenu();
                 
                 break;
         }

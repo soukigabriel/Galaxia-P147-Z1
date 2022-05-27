@@ -8,9 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class QuizManager : MonoBehaviour
 {
-    public List<QuestionsAndAnswers> QnA;
+    public static QuizManager sharedInstance;
+    public GameObject canvasMinijuegoQuiz;
+    public List<QuestionsAndAnswers> QnA, cohetes, bitcoin, hacker;
     public GameObject[] options;
     public int currentQuestion;
+    List<QuestionsAndAnswers> currentQnA;
 
     public GameObject QuizPanel;
     public GameObject GoPanel;
@@ -23,6 +26,7 @@ public class QuizManager : MonoBehaviour
     public Text FeedbackTxt;
 
     int totalQuestions = 0;
+    int idCurso = 0;
     public int score;
 
     public Animator transition;
@@ -32,20 +36,50 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private AudioClip _rightAnswer, _wrongAnswer;
     [SerializeField] private AudioSource _source;
 
+void Awake()
+    {
+        if(sharedInstance == null)
+            sharedInstance = this;
+    }
+
     private void Start()
-    {        
-        LevelLoader.SetActive(true);
-        totalQuestions = QnA.Count;
-        QuizPanel.SetActive(false);
-        GoPanel.SetActive(false);
-        score = 12;
+    {   
+      // retry("");
         //generateQuestion();
     }    
 
-    public void retry()
-    {
+    private void SetCurrentQnA(string QnAString){
+        totalQuestions = 0;
+        switch(QnAString){
+            case "cohetes":
+                currentQnA = cohetes;
+                idCurso = 0;
+                break;
+            case "bitcoin":
+                currentQnA = bitcoin;
+                idCurso = 1;
+                break;
+            case "hacker":
+                currentQnA = hacker;
+                idCurso = 2;
+                break;
+            default:
+                currentQnA = QnA;
+                break;
+        }
+    }
+
+    public void retry(string sQnA)
+    { 
+        SetCurrentQnA(sQnA);
+        LevelLoader.SetActive(true);
+        BriefPanel.SetActive(true);
+        totalQuestions = currentQnA.Count;
+        QuizPanel.SetActive(false);
+        GoPanel.SetActive(false);
+        score = 12;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        //StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void exit()
@@ -73,7 +107,7 @@ public class QuizManager : MonoBehaviour
         _source.PlayOneShot(_rightAnswer);
         //score += 1;
         Debug.Log(score);
-        QnA.RemoveAt(currentQuestion);
+        currentQnA.RemoveAt(currentQuestion);
         StartCoroutine(WaitForNext());
     }
 
@@ -83,7 +117,7 @@ public class QuizManager : MonoBehaviour
         score -= 1;
         Debug.Log(score);
         _source.PlayOneShot(_wrongAnswer);
-        //QnA.RemoveAt(currentQuestion);
+        //currentQnA.RemoveAt(currentQuestion);
         //StartCoroutine(WaitForNext());
     }
 
@@ -100,9 +134,9 @@ public class QuizManager : MonoBehaviour
             options[i].GetComponent<Image>().color = options[i].GetComponent<AnswerScript>().startColor;
             //Debug.Log("i = " + i + " | " + options[i].GetComponent<AnswerScript>().startColor);
             options[i].GetComponent<AnswerScript>().isCorrect = false;
-            options[i].transform.GetChild(0).GetComponent<Text>().text = QnA[currentQuestion].Answers[i];
+            options[i].transform.GetChild(0).GetComponent<Text>().text = currentQnA[currentQuestion].Answers[i];
 
-            if(QnA[currentQuestion].CorrectAnswer == i+1)
+            if(currentQnA[currentQuestion].CorrectAnswer == i+1)
             {
                 options[i].GetComponent<AnswerScript>().isCorrect = true;
             }
@@ -113,11 +147,11 @@ public class QuizManager : MonoBehaviour
     {
         BriefPanel.SetActive(false);
         QuizPanel.SetActive(true);
-        if(QnA.Count > 0)
+        if(currentQnA.Count > 0)
         {
-            currentQuestion = Random.Range(0, QnA.Count);
+            currentQuestion = Random.Range(0, currentQnA.Count);
 
-            QuestionTxt.text = QnA[currentQuestion].Question;
+            QuestionTxt.text = currentQnA[currentQuestion].Question;
             StartCoroutine(WaitForAnswers(0.01f));
             //SetAnswers();
         }
@@ -134,9 +168,15 @@ public class QuizManager : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(levelIndex);
+        //SceneManager.LoadScene(levelIndex);
+        /*----- codigo que se ejecuta al final ----------------------*/
+        GameManager.sharedInstance.platziRank += 600;
+        GameManager.sharedInstance.platziCoins += score;
+        CursosManager.sharedInstance.cursosTomados[idCurso] = true;
+        canvasMinijuegoQuiz.SetActive(false);
+        CursosManager.sharedInstance.ShowCursosMenu();
+        /*------------------------------------------------------------*/
     }
-
 
     IEnumerator WaitForAnswers(float seconds)
     {

@@ -7,7 +7,7 @@ public class Jetpack : MonoBehaviour
     //public bool[] activado = { false, false };
     public bool enUso {get; set;} = false;
     public bool isCooling;
-    public float potenciaContinua = 750f, potenciaCohete = 750f;
+    public float potenciaContinua = .25f, potenciaCohete = 45f;
     Rigidbody playerRB;
 
     /// <summary>
@@ -72,8 +72,8 @@ public class Jetpack : MonoBehaviour
             if (Input.GetButton("Fire1") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura /*&& activado[0]*/ && ResourcesManager.sharedInstance.combustible > 0  && isCooling == false)
             {
                 playerRB.AddForce(Vector3.up * potenciaContinua, ForceMode.VelocityChange);
-                ResourcesManager.sharedInstance.temperatura++;
-                ResourcesManager.sharedInstance.combustible--;
+                ResourcesManager.sharedInstance.temperatura+=1.8f;
+                ResourcesManager.sharedInstance.combustible-=2.5f;
                 enUso = true;
             }
     }
@@ -83,7 +83,8 @@ public class Jetpack : MonoBehaviour
 
             if (Input.GetButtonDown("Fire2") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura /*&& activado[1]*/ && ResourcesManager.sharedInstance.combustible > 0 && isCooling == false)
             {
-                playerRB.AddForce(Vector3.up * potenciaCohete, ForceMode.Impulse);
+                //playerRB.AddForce(Vector3.up * potenciaCohete, ForceMode.Impulse);
+                playerRB.velocity = new Vector3(playerRB.velocity.x,playerRB.velocity.y + potenciaCohete, playerRB.velocity.z);
                 enUso = true;
                 ResourcesManager.sharedInstance.temperatura += 50f;
                 ResourcesManager.sharedInstance.combustible -= ResourcesManager.sharedInstance.consumoPropulsionCohete;
@@ -91,7 +92,7 @@ public class Jetpack : MonoBehaviour
     }
 
     public void ActualizarJetpack(){
-        if(ResourcesManager.sharedInstance.temperatura > 0 && !enUso){
+        if(ResourcesManager.sharedInstance.temperatura > 0 && !enUso /*&& isCooling*/){
             ResourcesManager.sharedInstance.temperatura--;
         }
         ResourcesManager.sharedInstance.oxigeno--;

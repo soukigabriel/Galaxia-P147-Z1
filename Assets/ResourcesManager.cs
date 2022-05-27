@@ -6,9 +6,9 @@ public class ResourcesManager : MonoBehaviour
 {
     public static ResourcesManager sharedInstance;
     // variables que usa el jetcpack
-    public float temperatura = 200, maxTemperatura = 200, 
-        oxigeno = 1000, maxOxigeno = 1000, combustible = 1000, maxCombustible = 1000, 
-        consumoPropulsionCohete = 250;
+    public float temperatura = 0, maxTemperatura = 100, 
+        oxigeno = 5000, maxOxigeno = 5000, combustible = 1300, maxCombustible = 1300, 
+        consumoPropulsionCohete = 170;
 
     private void Start()
     {

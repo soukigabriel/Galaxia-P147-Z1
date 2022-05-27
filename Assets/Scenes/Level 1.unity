@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1633,11 +1633,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temperatura: 0
   maxTemperatura: 100
-  oxigeno: 1000
-  maxOxigeno: 1000
-  combustible: 1000
-  maxCombustible: 1000
-  consumoPropulsionCohete: 200
+  oxigeno: 5000
+  maxOxigeno: 5000
+  combustible: 1300
+  maxCombustible: 1300
+  consumoPropulsionCohete: 170
 --- !u!1001 &584386003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5124,6 +5124,14 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2091304204, guid: 45dfa0933b2d70c40b9f59b396b44541, type: 3}
+      propertyPath: potenciaCohete
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091304204, guid: 45dfa0933b2d70c40b9f59b396b44541, type: 3}
+      propertyPath: potenciaContinua
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091304204, guid: 45dfa0933b2d70c40b9f59b396b44541, type: 3}
       propertyPath: temperaturaMaxima
       value: 100
       objectReference: {fileID: 0}
@@ -5133,8 +5141,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8095532851184509457, guid: 45dfa0933b2d70c40b9f59b396b44541,
         type: 3}
+      propertyPath: jumpForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095532851184509457, guid: 45dfa0933b2d70c40b9f59b396b44541,
+        type: 3}
       propertyPath: maxVerticalVelocity
-      value: 6
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8095532851184509457, guid: 45dfa0933b2d70c40b9f59b396b44541,
         type: 3}

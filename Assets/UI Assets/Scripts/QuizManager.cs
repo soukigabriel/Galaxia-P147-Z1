@@ -26,10 +26,11 @@ public class QuizManager : MonoBehaviour
     public int score;
 
     public Animator transition;
+    public Animator musicAnim;
 
     public float transitionTime = 1f;
 
-    [SerializeField] private AudioClip _rightAnswer, _wrongAnswer;
+    [SerializeField] private AudioClip _rightAnswer, _wrongAnswer, _beep, _pointCount;
     [SerializeField] private AudioSource _source;
 
     private void Start()
@@ -40,6 +41,12 @@ public class QuizManager : MonoBehaviour
         GoPanel.SetActive(false);
         score = 12;
         //generateQuestion();
+    }
+
+    public void startGame()
+    {
+        _source.PlayOneShot(_beep);
+        generateQuestion();
     }    
 
     public void retry()
@@ -48,8 +55,9 @@ public class QuizManager : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
-    public void exit()
+    public void exitScene()
     {
+        _source.PlayOneShot(_beep);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
@@ -58,9 +66,10 @@ public class QuizManager : MonoBehaviour
     {
         QuizPanel.SetActive(false);
         GoPanel.SetActive(true);
+        _source.PlayOneShot(_pointCount, 0.5f);
         StartCoroutine(CountUpToTarget(PlatziRankTxt,  0, 600,   0.5f, 0f, "+"));
-        StartCoroutine(CountUpToTarget(PlatziCoinsTxt, 0, score, 0.1f, 0f, "+"));
-        //PlatziCoinsTxt.text = "+" + score;
+        //StartCoroutine(CountUpToTarget(PlatziCoinsTxt, 0, score, 0.1f, 0f, "+"));
+        PlatziCoinsTxt.text = "+" + score;
         //PlatziRankTxt.text = "+600";
         
         FeedbackTxt.text = "¡Felicidades Usuario! Has aprobado exitosamente mi evaluación, ahora veo que comprendes a la perfección la anatomía de las Naves Interestelares de Clase Dragon01-YZ";
@@ -109,8 +118,9 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    public void generateQuestion()
+    private void generateQuestion()
     {
+        
         BriefPanel.SetActive(false);
         QuizPanel.SetActive(true);
         if(QnA.Count > 0)
@@ -130,6 +140,7 @@ public class QuizManager : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
+        musicAnim.SetTrigger("musicFadeOut");
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
@@ -145,12 +156,7 @@ public class QuizManager : MonoBehaviour
     }
 
     IEnumerator CountUpToTarget(Text field, int currentDisplayScore, int targetScore, float duration, float delay = 0f, string prefix = "")
-    {
-        if (field == PlatziCoinsTxt)
-        {
-            Debug.Log("PlatziCoins! score = " + targetScore);
-        }
-        
+    {                
         if (delay > 0)
         {
             yield return new WaitForSeconds(delay);
@@ -158,6 +164,7 @@ public class QuizManager : MonoBehaviour
 
         while (currentDisplayScore < targetScore)
         {
+            
             currentDisplayScore += (int)(targetScore / (duration/Time.deltaTime)); 
             currentDisplayScore = Mathf.Clamp(currentDisplayScore, 0, targetScore);
             field.text = prefix + currentDisplayScore + "";

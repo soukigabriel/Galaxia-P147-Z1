@@ -90,7 +90,7 @@ public class QuizManager : MonoBehaviour
     {
         //when you answer wrong
         score -= 1;
-        Debug.Log(score);
+        //Debug.Log(score);
         _source.PlayOneShot(_wrongAnswer);
         //QnA.RemoveAt(currentQuestion);
         //StartCoroutine(WaitForNext());

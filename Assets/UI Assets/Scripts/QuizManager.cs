@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 public class QuizManager : MonoBehaviour
 {
     public List<QuestionsAndAnswers> QnA;
+    private List<QuestionsAndAnswers> QnAbackup;
+
     public GameObject[] options;
     public int currentQuestion;
 
@@ -35,7 +37,11 @@ public class QuizManager : MonoBehaviour
 
     private void Start()
     {        
-        LevelLoader.SetActive(true);
+        //LevelLoader.SetActive(true);
+        //Debug.Log("QnA.Count = "+QnA.Count);
+        //QnAbackup = QnA;
+        QnAbackup = new List<QuestionsAndAnswers>(QnA);
+        //Debug.Log("QnAbackup.Count = "+QnAbackup.Count);
         totalQuestions = QnA.Count;
         QuizPanel.SetActive(false);
         GoPanel.SetActive(false);
@@ -51,8 +57,16 @@ public class QuizManager : MonoBehaviour
 
     public void retry()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        //Debug.Log("retry()");
+        BriefPanel.SetActive(true);
+        //QnA = QnAbackup;
+        QnA = new List<QuestionsAndAnswers>(QnAbackup);
+        totalQuestions = QnA.Count;
+        QuizPanel.SetActive(false);
+        GoPanel.SetActive(false);
+        score = 12;        
+        StartCoroutine(retryWait());
+        //startGame();
     }
 
     public void exitScene()
@@ -81,8 +95,10 @@ public class QuizManager : MonoBehaviour
         //when you answer right
         _source.PlayOneShot(_rightAnswer);
         //score += 1;
-        Debug.Log(score);
+        //Debug.Log(score);
         QnA.RemoveAt(currentQuestion);
+        //Debug.Log("QnA.Count = "+QnA.Count);
+        //Debug.Log("QnAbackup.Count = "+QnAbackup.Count);
         StartCoroutine(WaitForNext());
     }
 
@@ -170,5 +186,11 @@ public class QuizManager : MonoBehaviour
             field.text = prefix + currentDisplayScore + "";
             yield return null;
         }
+    }
+
+    IEnumerator retryWait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        startGame();
     }
 }

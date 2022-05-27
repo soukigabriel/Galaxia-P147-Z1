@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject BriefPanel;
     public GameObject MenuPanel;
     public GameObject QuizIngenieriaInterestelar;
+
     public GameObject LevelLoader;
 
     [SerializeField] private AudioClip _beep;
@@ -36,6 +38,7 @@ public class UIManager : MonoBehaviour
         _source.PlayOneShot(_beep);
         MenuPanel.SetActive(false);
         QuizIngenieriaInterestelar.SetActive(true);
+
     }
 
     public void closeMenu()
@@ -52,8 +55,9 @@ public class UIManager : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        EditorApplication.ExecuteMenuItem("Edit/Play");
-        Application.Quit();
+        SceneManager.LoadScene("Level 1");
+        //EditorApplication.ExecuteMenuItem("Edit/Play");
+        //Application.Quit();
     }
     
 }

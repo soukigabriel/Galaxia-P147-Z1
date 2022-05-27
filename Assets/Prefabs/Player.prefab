@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 8095532851184509460}
   - component: {fileID: 8095532851184509457}
   - component: {fileID: 2091304204}
-  - component: {fileID: 6074323504513880166}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -189,6 +188,8 @@ MonoBehaviour:
     m_Bits: 256
   pivotOffset: {x: 0, y: 0, z: 0}
   m_Animator: {fileID: 1431258193}
+  maxVerticalVelocity: 4
+  minVerticalVelocity: -5
 --- !u!114 &2091304204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,29 +202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47d0ae2667c00249aaf89db25d21ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potenciaContinua: 750
+  potenciaContinua: 0.25
   potenciaCohete: 750
-  temperaturaJetpack: 0
-  limiteCarga: 150
-  activado: 0000
+  temperatura: 0
+  temperaturaMaxima: 200
   oxigeno: 1000
   combustible: 1000
---- !u!114 &6074323504513880166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8095532851184509461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a47d0ae2667c00249aaf89db25d21ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  potenciaContinua: 750
-  potenciaCohete: 750
-  temperaturaJetpack: 0
-  limiteCarga: 150
-  activado: 0000
-  oxigeno: 1000
-  combustible: 1000
+  maxOxigeno: 1000
+  maxCombustible: 1000

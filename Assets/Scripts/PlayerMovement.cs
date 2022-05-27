@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     const string STATE_ON_THE_GROUND = "isOnTheGround";
     const string STATE_RUNNING = "isRunning";
 
+    //Las siguientes variables sirven para restringir la velocidad vertical del personaje
+    public float maxVerticalVelocity = 4f, minVerticalVelocity = -4f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Jump(IsTouchingTheGround());
+        m_rigidBody.velocity = new Vector3(m_rigidBody.velocity.x, Mathf.Clamp(m_rigidBody.velocity.y, minVerticalVelocity, maxVerticalVelocity), m_rigidBody.velocity.z);
     }
 
     private void FixedUpdate()

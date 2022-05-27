@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class FillManager : MonoBehaviour
 {
     public Jetpack jetpack;
-    public Image oxigenBar, energyBar;
-    float porcentajeDeOxigeno, porcentajeDeCombustible;
+    public Image oxigenBar, energyBar, temperatureBar, circuloRecalentamiento;
+    float porcentajeDeOxigeno, porcentajeDeCombustible, porcentajeDeTemperatura;
+    Color nuevoColor;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        nuevoColor = circuloRecalentamiento.color;
     }
 
     // Update is called once per frame
@@ -20,11 +21,13 @@ public class FillManager : MonoBehaviour
     {
         AjustarPorcentajeOxigeno(ConseguirPorcentajeOxigeno());
         AjustarPorcentajeCombustible(ConseguirPorcentajeCombustible());
+        AjustarPorcentajeTemperatura(ConseguirPorcentajeTemperatura());
+        AjustarCirculoRecalentamiento(ConseguirPorcentajeTemperatura());
     }
 
     float ConseguirPorcentajeOxigeno()
     {
-        porcentajeDeOxigeno = (jetpack.oxigeno) / jetpack.maxOxigeno;
+        porcentajeDeOxigeno = (ResourcesManager.sharedInstance.oxigeno) / ResourcesManager.sharedInstance.maxOxigeno;
         return porcentajeDeOxigeno;
     }
 
@@ -35,12 +38,29 @@ public class FillManager : MonoBehaviour
 
     float ConseguirPorcentajeCombustible()
     {
-        porcentajeDeCombustible = jetpack.combustible / jetpack.maxCombustible;
+        porcentajeDeCombustible = ResourcesManager.sharedInstance.combustible / ResourcesManager.sharedInstance.maxCombustible;
         return porcentajeDeCombustible;
     }
 
     void AjustarPorcentajeCombustible(float porcentajeDeCombustible)
     {
         energyBar.fillAmount = porcentajeDeCombustible;
+    }
+
+    float ConseguirPorcentajeTemperatura()
+    {
+        porcentajeDeTemperatura = (ResourcesManager.sharedInstance.temperatura) / ResourcesManager.sharedInstance.maxTemperatura;
+        return porcentajeDeTemperatura;
+    }
+
+    void AjustarPorcentajeTemperatura(float porcentajeDeTemperatura)
+    {
+        temperatureBar.fillAmount = porcentajeDeTemperatura;
+    }
+
+    void AjustarCirculoRecalentamiento(float porcentajeDeTemperatura)
+    {
+        nuevoColor.a = porcentajeDeTemperatura;
+        circuloRecalentamiento.color = nuevoColor;
     }
 }

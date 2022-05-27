@@ -10,13 +10,15 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
 
     public int platziCoins;
+    public int platziRank;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        platziCoins = 0;
+        platziRank = 350;
         //Mas adelante este metodo debe cambiarse a MainMenu();
         StartGame();
     }
@@ -59,12 +61,15 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.inGame:
                 //Implementar logica de empezar el juego
+                currentGameState = GameState.inGame;
+                CursosManager.sharedInstance.HideCursosMenu();
                 break;
             case GameState.gameOver:
                 //Implementar logica de game over
                 break;
             case GameState.courseMenu:
                 currentGameState = GameState.courseMenu;
+                CursosManager.sharedInstance.ShowCursosMenu(platziCoins, platziRank);
                 
                 break;
         }

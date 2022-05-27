@@ -1447,7 +1447,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2083799474}
+  m_Father: {fileID: 699181750}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -1618,6 +1618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGameState: 0
   platziCoins: 0
+  platziRank: 0
 --- !u!4 &566806178
 Transform:
   m_ObjectHideFlags: 0
@@ -1899,6 +1900,7 @@ GameObject:
   - component: {fileID: 699181749}
   - component: {fileID: 699181748}
   - component: {fileID: 699181747}
+  - component: {fileID: 699181751}
   m_Layer: 5
   m_Name: CourseMenu
   m_TagString: Untagged
@@ -1978,6 +1980,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2083799474}
+  - {fileID: 851361553}
+  - {fileID: 2087861792}
+  - {fileID: 1433212491}
+  - {fileID: 540726371}
+  - {fileID: 1195884073}
+  - {fileID: 956453223}
+  - {fileID: 1085817341}
   - {fileID: 1424437160}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -1987,6 +1996,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &699181751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699181746}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf0c561a10198b489b1998b8f6545c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuCursosCanvas: {fileID: 699181749}
+  cursocohete: {fileID: 1085817342}
+  cursobitcoin: {fileID: 956453224}
+  cursohacker: {fileID: 1195884074}
+  salir: {fileID: 1424437161}
+  platziCoins: {fileID: 0}
+  platziRank: {fileID: 0}
+  cursosTomados: 000000
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,6 +2353,7 @@ GameObject:
   - component: {fileID: 851361553}
   - component: {fileID: 851361555}
   - component: {fileID: 851361554}
+  - component: {fileID: 851361556}
   m_Layer: 5
   m_Name: sub-fondo
   m_TagString: Untagged
@@ -2342,12 +2372,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7.241952, y: 2.7439632, z: 2.3452678}
   m_Children: []
-  m_Father: {fileID: 2083799474}
-  m_RootOrder: 0
+  m_Father: {fileID: 699181750}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000019073486, y: -58.6}
+  m_AnchoredPosition: {x: 0, y: -58.6}
   m_SizeDelta: {x: 110.5, y: 117.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &851361554
@@ -2387,6 +2417,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851361552}
   m_CullTransparentMesh: 0
+--- !u!114 &851361556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851361552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf0c561a10198b489b1998b8f6545c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuCursosCanvas: {fileID: 0}
+  cursocohete: {fileID: 0}
+  cursobitcoin: {fileID: 0}
+  cursohacker: {fileID: 0}
+  salir: {fileID: 0}
+  platziCoins: {fileID: 0}
+  platziRank: {fileID: 0}
+  cursosTomados: 000000
 --- !u!1001 &912704684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2655,7 +2705,7 @@ GameObject:
   - component: {fileID: 956453225}
   - component: {fileID: 956453224}
   m_Layer: 5
-  m_Name: CurrsoBitcoin
+  m_Name: CursoBitcoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2675,8 +2725,8 @@ RectTransform:
   - {fileID: 1539445476}
   - {fileID: 2108016959}
   - {fileID: 52099684}
-  m_Father: {fileID: 2083799474}
-  m_RootOrder: 2
+  m_Father: {fileID: 699181750}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3345,8 +3395,8 @@ RectTransform:
   - {fileID: 2043320371}
   - {fileID: 1629187916}
   - {fileID: 1151543253}
-  m_Father: {fileID: 2083799474}
-  m_RootOrder: 1
+  m_Father: {fileID: 699181750}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3395,7 +3445,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1085817343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 699181751}
+        m_MethodName: TomarCursoCohetes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1085817343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3926,8 +3987,8 @@ RectTransform:
   - {fileID: 331717328}
   - {fileID: 965142092}
   - {fileID: 748934679}
-  m_Father: {fileID: 2083799474}
-  m_RootOrder: 3
+  m_Father: {fileID: 699181750}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4290,7 +4351,7 @@ RectTransform:
   m_Children:
   - {fileID: 481155085}
   m_Father: {fileID: 699181750}
-  m_RootOrder: 1
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -4339,7 +4400,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1424437162}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 699181751}
+        m_MethodName: BotonSalir
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1424437162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4406,8 +4478,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2083799474}
-  m_RootOrder: 5
+  m_Father: {fileID: 699181750}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -6017,14 +6089,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 851361553}
-  - {fileID: 1085817341}
-  - {fileID: 956453223}
-  - {fileID: 1195884073}
-  - {fileID: 540726371}
-  - {fileID: 1433212491}
-  - {fileID: 2087861792}
+  m_Children: []
   m_Father: {fileID: 699181750}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6095,12 +6160,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087861791}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75929, y: 0.75929, z: 0.75929}
   m_Children: []
-  m_Father: {fileID: 2083799474}
-  m_RootOrder: 6
+  m_Father: {fileID: 699181750}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -6249,7 +6314,7 @@ PrefabInstance:
     - target: {fileID: 8095532851184509462, guid: 45dfa0933b2d70c40b9f59b396b44541,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 8095532851184509462, guid: 45dfa0933b2d70c40b9f59b396b44541,
         type: 3}

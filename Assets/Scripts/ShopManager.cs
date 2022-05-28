@@ -56,6 +56,8 @@ public class ShopManager : MonoBehaviour
             switch(idArticulo){
             case 0: //combustible
                 // sumar al combustible y a su limite
+
+                // restando platzicoin y registrado compra
                 GameManager.sharedInstance.platziCoins -= precios[idArticulo];
                 textoPlatziCoins.text = "PlatiZoins: " + GameManager.sharedInstance.platziCoins.ToString();
                 precios[idArticulo] *= 2;
@@ -63,6 +65,9 @@ public class ShopManager : MonoBehaviour
                 break;
             case 1: //oxigeno
                 // sumar al oxigeno y a su limite
+
+
+                // restando platzicoin y registrado compra
                 GameManager.sharedInstance.platziCoins-= precios[idArticulo];
                 textoPlatziCoins.text = "PlatiZoins: " + GameManager.sharedInstance.platziCoins.ToString();
                 precios[idArticulo] *= 2;
@@ -70,6 +75,8 @@ public class ShopManager : MonoBehaviour
 
                 break;
             case 2: //arma
+
+            // restando platzicoin y registrado compra, evitando una segunda compra
                 if(!armaComprada){
                     armaComprada = true;
                     GameManager.sharedInstance.platziCoins-= precios[idArticulo];
@@ -79,12 +86,16 @@ public class ShopManager : MonoBehaviour
                 }
                 break;
             case 3: //enfriador
+
+            // restando platzicoin y registrado compra
                 GameManager.sharedInstance.platziCoins-= precios[idArticulo];
                 textoPlatziCoins.text = "PlatiZoins: " + GameManager.sharedInstance.platziCoins.ToString();
                 precios[idArticulo] *= 2;
                 textoEnfriador.text = "Precio: "+ precios[idArticulo].ToString();
                 break;
             case 4: //herramientas
+
+            // restando platzicoin y registrado compra, evitando una segunda compra
                 if(!herramientasCompradas){
                     herramientasCompradas = true;
                     GameManager.sharedInstance.platziCoins-= precios[idArticulo];

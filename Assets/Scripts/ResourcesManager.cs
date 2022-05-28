@@ -9,6 +9,8 @@ public class ResourcesManager : MonoBehaviour
     public float temperatura = 0, maxTemperatura = 100, 
         oxigeno = 5000, maxOxigeno = 5000, combustible = 1300, maxCombustible = 1300, 
         consumoPropulsionCohete = 170;
+    public GameObject energyObject;
+    public bool sabeHackear;
 
     private void Start()
     {
@@ -20,11 +22,17 @@ public class ResourcesManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        sabeHackear = false;
     }
 
     private void Update()
     {
         ClampValues();
+    }
+
+    public void ActivatePlayerEnergy()
+    {
+        energyObject.SetActive(true);
     }
 
     void ClampValues()

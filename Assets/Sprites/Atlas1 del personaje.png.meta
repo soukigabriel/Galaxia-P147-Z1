@@ -4,37 +4,37 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -8832146678617197023
-    second: Atlas1 del personaje_0
+    second: interact01
   - first:
       213: -2358466966458545903
-    second: Atlas1 del personaje_1
+    second: interact02
   - first:
       213: 5163729387376545064
-    second: Atlas1 del personaje_2
+    second: interact03
   - first:
       213: 2678091378133189523
-    second: Atlas1 del personaje_3
+    second: interact04
   - first:
       213: -51203643698417542
-    second: Atlas1 del personaje_4
+    second: interact05
   - first:
       213: -8764797920043490974
-    second: Atlas1 del personaje_5
+    second: interact06
   - first:
       213: 4498063483579846749
-    second: Atlas1 del personaje_6
+    second: interact07
   - first:
       213: 1170130170463122077
-    second: Atlas1 del personaje_7
+    second: interact08
   - first:
       213: 4474077436863371375
-    second: Atlas1 del personaje_8
+    second: interact09
   - first:
       213: 8589869806592561049
-    second: Atlas1 del personaje_9
+    second: interact10
   - first:
       213: -8451443543059539521
-    second: Atlas1 del personaje_10
+    second: interact11
   - first:
       213: 2241885209204405089
     second: Die_01
@@ -276,7 +276,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atlas1 del personaje_0
+      name: interact01
       rect:
         serializedVersion: 2
         x: 307
@@ -297,7 +297,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_1
+      name: interact02
       rect:
         serializedVersion: 2
         x: 885
@@ -318,7 +318,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_2
+      name: interact03
       rect:
         serializedVersion: 2
         x: 1397
@@ -339,7 +339,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_3
+      name: interact04
       rect:
         serializedVersion: 2
         x: 1900
@@ -360,7 +360,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_4
+      name: interact05
       rect:
         serializedVersion: 2
         x: 2408
@@ -381,7 +381,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_5
+      name: interact06
       rect:
         serializedVersion: 2
         x: 2867
@@ -402,7 +402,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_6
+      name: interact07
       rect:
         serializedVersion: 2
         x: 3309
@@ -423,7 +423,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_7
+      name: interact08
       rect:
         serializedVersion: 2
         x: 3750
@@ -444,7 +444,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_8
+      name: interact09
       rect:
         serializedVersion: 2
         x: 4240
@@ -465,7 +465,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_9
+      name: interact10
       rect:
         serializedVersion: 2
         x: 4740
@@ -486,7 +486,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas1 del personaje_10
+      name: interact11
       rect:
         serializedVersion: 2
         x: 5256
@@ -534,7 +534,7 @@ TextureImporter:
         x: 719
         y: 3029
         width: 410
-        height: 678
+        height: 733
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -555,7 +555,7 @@ TextureImporter:
         x: 1234
         y: 3029
         width: 480
-        height: 516
+        height: 733
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -576,7 +576,7 @@ TextureImporter:
         x: 1819
         y: 3029
         width: 494
-        height: 506
+        height: 733
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -597,7 +597,7 @@ TextureImporter:
         x: 2418
         y: 3029
         width: 528
-        height: 537
+        height: 733
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -618,7 +618,7 @@ TextureImporter:
         x: 3051
         y: 3029
         width: 510
-        height: 525
+        height: 733
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -639,9 +639,9 @@ TextureImporter:
         x: 3666
         y: 3029
         width: 506
-        height: 483
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 733
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -660,9 +660,9 @@ TextureImporter:
         x: 4292
         y: 3029
         width: 552
-        height: 418
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 733
+      alignment: 9
+      pivot: {x: 0.78, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -681,9 +681,9 @@ TextureImporter:
         x: 4964
         y: 2956
         width: 671
-        height: 370
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 733
+      alignment: 9
+      pivot: {x: 0.81, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -702,9 +702,9 @@ TextureImporter:
         x: 5755
         y: 2956
         width: 687
-        height: 311
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 733
+      alignment: 9
+      pivot: {x: 0.84, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -724,8 +724,8 @@ TextureImporter:
         y: 2956
         width: 686
         height: 304
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.86, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -784,7 +784,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1392
-        y: 2030
+        y: 2035
         width: 548
         height: 709
       alignment: 0
@@ -846,8 +846,8 @@ TextureImporter:
       name: Jump_06
       rect:
         serializedVersion: 2
-        x: 3392
-        y: 2035
+        x: 3397
+        y: 2040
         width: 456
         height: 616
       alignment: 0
@@ -1141,7 +1141,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5329
-        y: 1075
+        y: 1080
         width: 507
         height: 712
       alignment: 0
@@ -1203,8 +1203,8 @@ TextureImporter:
       name: Shot_01
       rect:
         serializedVersion: 2
-        x: 131
-        y: 116
+        x: 136
+        y: 121
         width: 342
         height: 803
       alignment: 0
@@ -1270,8 +1270,8 @@ TextureImporter:
         y: 121
         width: 546
         height: 751
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.354071, y: 0.5471534}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1291,8 +1291,8 @@ TextureImporter:
         y: 121
         width: 558
         height: 752
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.31357807, y: 0.5529768}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1312,8 +1312,8 @@ TextureImporter:
         y: 121
         width: 473
         height: 787
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.36898166, y: 0.52812284}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1333,8 +1333,8 @@ TextureImporter:
         y: 121
         width: 343
         height: 849
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49999857, y: 0.49217936}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1354,8 +1354,8 @@ TextureImporter:
         y: 121
         width: 394
         height: 797
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5967231, y: 0.51666224}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1375,8 +1375,8 @@ TextureImporter:
         y: 121
         width: 389
         height: 766
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.57396394, y: 0.53756195}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1396,8 +1396,8 @@ TextureImporter:
         y: 121
         width: 367
         height: 784
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5399991, y: 0.5282305}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1417,8 +1417,8 @@ TextureImporter:
         y: 121
         width: 347
         height: 786
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5191316, y: 0.51407933}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -91,7 +91,8 @@ public class Jetpack : MonoBehaviour
             }
     }
 
-    public void ActualizarJetpack(){
+    public void ActualizarJetpack()
+    {
         if(ResourcesManager.sharedInstance.temperatura > 0 && !enUso /*&& isCooling*/){
             ResourcesManager.sharedInstance.temperatura--;
         }

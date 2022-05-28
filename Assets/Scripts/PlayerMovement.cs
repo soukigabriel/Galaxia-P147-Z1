@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator m_Animator;
     const string STATE_ON_THE_GROUND = "isOnTheGround";
     const string STATE_RUNNING = "isRunning";
-    public SpriteRenderer m_spriteRenderer;
 
     //Las siguientes variables sirven para restringir la velocidad vertical del personaje
     public float maxVerticalVelocity = 4f, minVerticalVelocity = -4f;
@@ -122,11 +121,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (horizontalInput.x > 0f)
         {
-            m_spriteRenderer.flipX = false;
+            this.transform.right = Vector3.right;
+
         }
         else if (horizontalInput.x < 0f)
         {
-            m_spriteRenderer.flipX = true;
+            this.transform.right = Vector3.left;
         }
     }
 }

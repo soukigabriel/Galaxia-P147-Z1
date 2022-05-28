@@ -38,8 +38,14 @@ public class QuizManager : MonoBehaviour
 
 void Awake()
     {
-        if(sharedInstance == null)
+        if (sharedInstance == null)
+        {
             sharedInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -47,6 +53,15 @@ void Awake()
       // retry("");
         //generateQuestion();
     }    
+
+     public void ShowMinigame(string sQnA){
+        canvasMinijuegoQuiz.SetActive(true);
+        retry(sQnA);
+    }
+    public void HideMinigame(){
+        canvasMinijuegoQuiz.SetActive(false);
+        //MenuCursosCanvas.GetComponentInChildren();
+    }
 
     private void SetCurrentQnA(string QnAString){
         totalQuestions = 0;
@@ -173,8 +188,8 @@ void Awake()
         GameManager.sharedInstance.platziRank += 600;
         GameManager.sharedInstance.platziCoins += score;
         CursosManager.sharedInstance.cursosTomados[idCurso] = true;
-        canvasMinijuegoQuiz.SetActive(false);
         CursosManager.sharedInstance.ShowCursosMenu();
+        HideMinigame();
         /*------------------------------------------------------------*/
     }
 

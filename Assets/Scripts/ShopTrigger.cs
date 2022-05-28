@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuCursosTrigger : MonoBehaviour
+public class ShopTrigger : MonoBehaviour
 {
     /// <summary>
     /// OnTriggerStay is called once per frame for every Collider other
@@ -11,13 +11,9 @@ public class MenuCursosTrigger : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerStay(Collider other)
     {
-        
-        /*if (other.tag == "Player" && Input.GetButtonDown("Accionar"))*/
-        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.W)){
+        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.W)){
             other.attachedRigidbody.velocity = new Vector3(0,0,0);
-            GameManager.sharedInstance.CourseMenu();
+            GameManager.sharedInstance.inShop();
         }
     }
-
-
 }

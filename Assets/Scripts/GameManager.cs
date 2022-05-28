@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { mainMenu, pause, inGame, courseMenu, gameOver };
+public enum GameState { mainMenu, pause, inGame, courseMenu, inShop, gameOver };
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedInstance;
     public GameState currentGameState;
+    //public GameObject CanvasCursos, CanvasMinijuegoQuiz, CanvasTienda;
+
 
     public int platziCoins;
     public int platziRank;
@@ -54,23 +56,33 @@ public class GameManager : MonoBehaviour
         switch (newGameState)
         {
             case GameState.mainMenu:
+                currentGameState = GameState.mainMenu;
                 //Implementar logica de menu principal
                 break;
             case GameState.pause:
+                currentGameState = GameState.pause;
                 //Implementar logica de menu de pausa
+
                 break;
             case GameState.inGame:
                 //Implementar logica de empezar el juego
                 currentGameState = GameState.inGame;
                 CursosManager.sharedInstance.HideCursosMenu();
-                //QuizManager.sharedInstance.
+                ShopManager.sharedInstance.HideShop();
                 break;
             case GameState.gameOver:
+                currentGameState = GameState.gameOver;
                 //Implementar logica de game over
+                
                 break;
             case GameState.courseMenu:
                 currentGameState = GameState.courseMenu;
                 CursosManager.sharedInstance.ShowCursosMenu();
+                
+                break;
+            case GameState.inShop:
+                currentGameState = GameState.inShop;
+                ShopManager.sharedInstance.ShowShop();
                 
                 break;
         }
@@ -81,6 +93,10 @@ public class GameManager : MonoBehaviour
     public void CourseMenu()
     {
         SetGameState(GameState.courseMenu);
+    }
+
+    public void inShop(){
+        SetGameState(GameState.inShop);
     }
     private void Awake()
     {

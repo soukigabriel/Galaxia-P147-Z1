@@ -36,22 +36,23 @@ public class Jetpack : MonoBehaviour
     void Update()
     {
         /*------ Jetpack ---------------------------------------------------------------------------*/        
-        if (Input.GetButton("Fire1")) // boton para la propulcion continua
+        if (Input.GetButton("Fire1") && GameManager.sharedInstance.currentGameState == GameState.inGame) // boton para la propulcion continua
             PropulsionContinua();
 
 
-        if (Input.GetButton("Fire2")) // boton para la propulcion cohete
+        if (Input.GetButton("Fire2") && GameManager.sharedInstance.currentGameState == GameState.inGame) // boton para la propulcion cohete
             PropulsionCohete();
 
 
-        if (Input.GetButtonUp("Fire1") || Input.GetButtonUp("Fire2")) // deteccion de uso del yetcpack para que descanse
+        if (Input.GetButtonUp("Fire1") || Input.GetButtonUp("Fire2") && GameManager.sharedInstance.currentGameState == GameState.inGame) // deteccion de uso del yetcpack para que descanse
             enUso = false;
 /*-------------------------------------------------------------------------------------------*/
     }
 
     private void FixedUpdate()
     {
-        ActualizarJetpack(); // actualizaciones que ocupa el jetpack
+        if(GameManager.sharedInstance.currentGameState == GameState.inGame)
+            ActualizarJetpack(); // actualizaciones que ocupa el jetpack
     }
 
     void PropulsionContinua()

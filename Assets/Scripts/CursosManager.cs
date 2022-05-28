@@ -8,7 +8,7 @@ public class CursosManager : MonoBehaviour
 {
 
     public static CursosManager sharedInstance;
-    public Canvas MenuCursosCanvas;
+    public GameObject MenuCursosCanvas;
     public GameObject MinijuegoQuiz;
 
     public Button cursocohete, cursobitcoin, cursohacker, salir;
@@ -29,23 +29,11 @@ public class CursosManager : MonoBehaviour
         if(sharedInstance == null)
             sharedInstance = this;
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ShowCursosMenu(){
         this.platziCoins.text = "PlatziCoins: " + GameManager.sharedInstance.platziCoins.ToString();
         this.platziRank.text = "PlatziRank: " + GameManager.sharedInstance.platziRank.ToString();
-        MenuCursosCanvas.enabled = true;
+        MenuCursosCanvas.SetActive(true);
         
         if(cursosTomados[0])
             cursocohete.gameObject.GetComponent<Image>().color = Color.green;
@@ -55,7 +43,7 @@ public class CursosManager : MonoBehaviour
             cursohacker.gameObject.GetComponent<Image>().color = Color.green;
     }
     public void HideCursosMenu(){
-        MenuCursosCanvas.enabled = false;
+        MenuCursosCanvas.SetActive(false);
         //MenuCursosCanvas.GetComponentInChildren();
     }
 
@@ -63,7 +51,7 @@ public class CursosManager : MonoBehaviour
         if(!cursosTomados[0] && GameManager.sharedInstance.platziRank >= 300){
             MinijuegoQuiz.SetActive(true); // activa el canvas del quiz
             QuizManager.sharedInstance.retry("cohetes"); // inicializa segun el curso
-            MenuCursosCanvas.enabled = false;
+            MenuCursosCanvas.SetActive(false);
             Debug.Log("hola");
         }   
     }
@@ -72,7 +60,7 @@ public class CursosManager : MonoBehaviour
         if(!cursosTomados[1] && GameManager.sharedInstance.platziRank >= 700){
             MinijuegoQuiz.SetActive(true);
             QuizManager.sharedInstance.retry("bitcoin");
-            MenuCursosCanvas.enabled = false;
+            MenuCursosCanvas.SetActive(false);
         }
     }
 
@@ -80,7 +68,7 @@ public class CursosManager : MonoBehaviour
         if(!cursosTomados[2] && GameManager.sharedInstance.platziRank >= 800){
             MinijuegoQuiz.SetActive(true);
             QuizManager.sharedInstance.retry("hacker");
-            MenuCursosCanvas.enabled = false;
+            MenuCursosCanvas.SetActive(false);
         }
     }
 

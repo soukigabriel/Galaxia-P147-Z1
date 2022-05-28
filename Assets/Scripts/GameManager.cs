@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
                 //Implementar logica de empezar el juego
                 currentGameState = GameState.inGame;
                 CursosManager.sharedInstance.HideCursosMenu();
+                //QuizManager.sharedInstance.
                 break;
             case GameState.gameOver:
                 //Implementar logica de game over

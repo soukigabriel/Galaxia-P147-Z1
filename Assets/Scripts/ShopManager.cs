@@ -16,7 +16,7 @@ public class ShopManager : MonoBehaviour
     4- herramientas
 */
     public int[] precios = {6,6,15,10,6};
-    public int[] nivelArticulos = {1,1,1,1,1};
+    public int[] nivelArticulos = {1,1,0,1,1};
 
     public Text textoCombustibre, textoOxigeno, textoaArma, textoEnfriador, textoHerramientas, textoPlatziCoins;
 

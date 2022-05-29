@@ -45,7 +45,8 @@ public class Jetpack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ActualizarJetpack(); // actualizaciones que ocupa el jetpack
+        if(GameManager.sharedInstance.currentGameState == GameState.inGame)
+            ActualizarJetpack(); // actualizaciones que ocupa el jetpack
     }
 
     void VerificarPropulsion()

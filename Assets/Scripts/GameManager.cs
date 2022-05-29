@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager sharedInstance;
     public GameState currentGameState;
-    //public GameObject CanvasCursos, CanvasMinijuegoQuiz, CanvasTienda;
+    public GameObject CanvasCursos, CanvasMinijuegoQuiz, CanvasTienda;
 
 
     public int platziCoins;

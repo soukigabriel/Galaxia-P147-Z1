@@ -10,6 +10,9 @@ public class Jetpack : MonoBehaviour
     public float potenciaContinua = .25f, potenciaCohete = 45f;
     // puede haber un objeto que mejore la potencia
     Rigidbody playerRB;
+    [SerializeField] Animator m_animator;
+    const string STATE_PROPULSANDOSE = "propulsandose";
+
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -23,6 +26,7 @@ public class Jetpack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_animator.SetBool(STATE_PROPULSANDOSE, false);
         isCooling = false;
     }
 
@@ -33,8 +37,11 @@ public class Jetpack : MonoBehaviour
         VerificarPropulsion();
 
 
-        if (Input.GetButtonUp("Fire1") || Input.GetButtonUp("Fire2")) // deteccion de uso del yetcpack para que descanse
+        if ((Input.GetButtonUp("Fire1") || Input.GetButtonUp("Fire2")) || isCooling)
+        {
             enUso = false;
+            m_animator.SetBool(STATE_PROPULSANDOSE, false);
+        }
         /*-------------------------------------------------------------------------------------------*/
     }
 
@@ -80,7 +87,9 @@ public class Jetpack : MonoBehaviour
                 ResourcesManager.sharedInstance.temperatura+= ResourcesManager.sharedInstance.velocidadDeCalentado;
                 ResourcesManager.sharedInstance.combustible-= ResourcesManager.sharedInstance.velocidadDeConsumoCombustible;
                 enUso = true;
-            }
+            m_animator.SetBool(STATE_PROPULSANDOSE, true);
+
+        }
     }
 
     void PropulsionCohete()
@@ -91,9 +100,11 @@ public class Jetpack : MonoBehaviour
                 //playerRB.AddForce(Vector3.up * potenciaCohete, ForceMode.Impulse);
                 playerRB.velocity = new Vector3(playerRB.velocity.x,playerRB.velocity.y + potenciaCohete, playerRB.velocity.z);
                 enUso = true;
-                /*ResourcesManager.sharedInstance.temperatura += 50f;
-                ResourcesManager.sharedInstance.combustible -= ResourcesManager.sharedInstance.consumoPropulsionCohete;//Originales */
-                ResourcesManager.sharedInstance.temperatura += ResourcesManager.sharedInstance.velocidadDeCalentadoCohete;
+            m_animator.SetBool(STATE_PROPULSANDOSE, true);
+
+            /*ResourcesManager.sharedInstance.temperatura += 50f;
+            ResourcesManager.sharedInstance.combustible -= ResourcesManager.sharedInstance.consumoPropulsionCohete;//Originales */
+            ResourcesManager.sharedInstance.temperatura += ResourcesManager.sharedInstance.velocidadDeCalentadoCohete;
                 ResourcesManager.sharedInstance.combustible -= ResourcesManager.sharedInstance.consumoPropulsionCohete;
             }
     }

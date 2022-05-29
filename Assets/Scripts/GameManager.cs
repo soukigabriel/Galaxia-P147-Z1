@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
         case GameState.inGame:
             //Implementar logica de empezar el juego
             currentGameState = GameState.inGame;
-            CursosManager.sharedInstance.HideCursosMenu();
-            ShopManager.sharedInstance.HideShop();
+            //CursosManager.sharedInstance.HideCursosMenu();
+            //ShopManager.sharedInstance.HideShop();
             break;
         case GameState.gameOver:
             currentGameState = GameState.gameOver;

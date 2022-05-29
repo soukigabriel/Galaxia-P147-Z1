@@ -6,11 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public static MainMenu sharedInstance;
-    public GameObject optionsMenu;
-    public GameObject mainMenu;
-    public GameObject creditsPanel;
-    public GameObject mainLogo;
-    public GameObject copyright;
+    public GameObject optionsMenu, mainMenu, creditsPanel, mainLogo, copyright, controles;
 
     public AudioClip _beep;
     public AudioSource _source;
@@ -48,6 +44,7 @@ public class MainMenu : MonoBehaviour
         ShowMainMenu();
         HideOptionsMenu();
         HideCreditsPanel();
+        HideControls();
     }
 
     public void StartButton()
@@ -62,6 +59,9 @@ public class MainMenu : MonoBehaviour
         _source.PlayOneShot(_beep);
         HideMainMenu();
         ShowOptionsMenu();
+        HideControls();
+        ShowMainLogo();
+        ShowCopyright();
     }
 
     public void CreditsButton()
@@ -87,6 +87,17 @@ public class MainMenu : MonoBehaviour
         _source.PlayOneShot(_beep);
         HideOptionsMenu();
         ShowMainMenu();
+    }
+
+    public void ControlsButton()
+    {
+        _source.PlayOneShot(_beep);
+        ShowControls();
+        HideMainMenu();
+        HideOptionsMenu();
+        HideMainLogo();
+        HideCreditsPanel();
+        HideCopyright();
     }
 
     public void ExitButton()
@@ -149,6 +160,16 @@ public class MainMenu : MonoBehaviour
     void HideCopyright()
     {
         copyright.SetActive(false);
+    }
+
+    void ShowControls()
+    {
+        controles.SetActive(true);
+    }
+
+    void HideControls()
+    {
+        controles.SetActive(false);
     }
 /*
     void ExitGame()

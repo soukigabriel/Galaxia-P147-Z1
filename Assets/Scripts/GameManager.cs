@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
     public GameObject CanvasCursos, CanvasMinijuegoQuiz, CanvasTienda;
 
+    public AudioSource backgroundMusic;
 
     public int platziCoins;
     public int platziRank;
@@ -29,7 +30,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PauseCheck(currentGameState);
+    }
 
+    void PauseCheck(GameState gameState)
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            switch(gameState)
+            {
+                case GameState.inGame:
+                    PauseGame();
+                    break;
+                case GameState.pause:
+                    StartGame();
+                    break;
+            }
+        }
     }
 
     public void MainMenu()
@@ -58,18 +75,30 @@ public class GameManager : MonoBehaviour
         {
             case GameState.mainMenu:
                 currentGameState = GameState.mainMenu;
+                PauseMenu.sharedInstance.BackToMainMenu();
                 //Implementar logica de menu principal
                 break;
             case GameState.pause:
-                currentGameState = GameState.pause;
-                //Implementar logica de menu de pausa
 
+                PauseMenu.sharedInstance.PauseGame();
+                backgroundMusic.Pause();
+                currentGameState = GameState.pause;
                 break;
             case GameState.inGame:
-                //Implementar logica de empezar el juego
+
+                if (currentGameState == GameState.pause)
+                {
+                    PauseMenu.sharedInstance.ResumeGame();
+                    backgroundMusic.Play();
+                }
+                else
+                {
+                    CursosManager.sharedInstance.HideCursosMenu();
+                    ShopManager.sharedInstance.HideShop();
+                }
+
                 currentGameState = GameState.inGame;
-                CursosManager.sharedInstance.HideCursosMenu();
-                ShopManager.sharedInstance.HideShop();
+
                 break;
             case GameState.gameOver:
                 currentGameState = GameState.gameOver;

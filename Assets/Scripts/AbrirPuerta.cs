@@ -75,7 +75,7 @@ public class AbrirPuerta : MonoBehaviour
                     break;
 
                 case TipoDePuerta.puertaHackeable:
-                    if (ResourcesManager.sharedInstance.sabeHackear)
+                    /*if (ResourcesManager.sharedInstance.sabeHackear)
                     {
                         Debug.Log("Sabes Hackear");
                         haSidoAbierta = true;
@@ -86,7 +86,7 @@ public class AbrirPuerta : MonoBehaviour
                     else
                     {
                         Debug.Log("NO SABES HACKEAR");
-                    }
+                    }*/
                     break;
             }
         }

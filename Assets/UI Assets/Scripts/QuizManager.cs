@@ -94,7 +94,7 @@ void Awake()
         GoPanel.SetActive(false);
         score = 12;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+       // StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void exit()
@@ -112,7 +112,7 @@ void Awake()
         //PlatziCoinsTxt.text = "+" + score;
         //PlatziRankTxt.text = "+600";
         
-        FeedbackTxt.text = "¡Felicidades Usuario! Has aprobado exitosamente mi evaluación, ahora veo que comprendes a la perfección la anatomía de las Naves Interestelares de Clase Dragon01-YZ";
+        FeedbackTxt.text = "¡Felicidades Platzinauta! Has aprobado exitosamente el examen, disfruta de tu nuevo conocimiento y nunca pares de aprender, hoy más que nunca";
     
     }
 
@@ -121,7 +121,7 @@ void Awake()
         //when you answer right
         _source.PlayOneShot(_rightAnswer);
         //score += 1;
-        Debug.Log(score);
+        //Debug.Log(score);
         currentQnA.RemoveAt(currentQuestion);
         StartCoroutine(WaitForNext());
     }
@@ -130,7 +130,7 @@ void Awake()
     {
         //when you answer wrong
         score -= 1;
-        Debug.Log(score);
+        //Debug.Log(score);
         _source.PlayOneShot(_wrongAnswer);
         //currentQnA.RemoveAt(currentQuestion);
         //StartCoroutine(WaitForNext());
@@ -203,7 +203,7 @@ void Awake()
     {
         if (field == PlatziCoinsTxt)
         {
-            Debug.Log("PlatziCoins! score = " + targetScore);
+            //Debug.Log("PlatziCoins! score = " + targetScore);
         }
         
         if (delay > 0)

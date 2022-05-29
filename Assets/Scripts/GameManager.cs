@@ -55,39 +55,36 @@ public class GameManager : MonoBehaviour
     {
         switch (newGameState)
         {
-            case GameState.mainMenu:
-                currentGameState = GameState.mainMenu;
-                //Implementar logica de menu principal
-                break;
-            case GameState.pause:
-                currentGameState = GameState.pause;
-                //Implementar logica de menu de pausa
+        case GameState.mainMenu:
+            currentGameState = GameState.mainMenu;
+            //Implementar logica de menu principal
+            break;
+        case GameState.pause:
+            currentGameState = GameState.pause;
+            //Implementar logica de menu de pausa
 
-                break;
-            case GameState.inGame:
-                //Implementar logica de empezar el juego
-                currentGameState = GameState.inGame;
-
-                //La siguiente linea de codigo ocasiona un error
-
-                //CursosManager.sharedInstance.HideCursosMenu();
-                ShopManager.sharedInstance.HideShop();
-                break;
-            case GameState.gameOver:
-                currentGameState = GameState.gameOver;
-                //Implementar logica de game over
-                
-                break;
-            case GameState.courseMenu:
-                currentGameState = GameState.courseMenu;
-                CursosManager.sharedInstance.ShowCursosMenu();
-                
-                break;
-            case GameState.inShop:
-                currentGameState = GameState.inShop;
-                ShopManager.sharedInstance.ShowShop();
-                
-                break;
+            break;
+        case GameState.inGame:
+            //Implementar logica de empezar el juego
+            currentGameState = GameState.inGame;
+            CursosManager.sharedInstance.HideCursosMenu();
+            ShopManager.sharedInstance.HideShop();
+            break;
+        case GameState.gameOver:
+            currentGameState = GameState.gameOver;
+            //Implementar logica de game over
+            
+            break;
+        case GameState.courseMenu:
+            currentGameState = GameState.courseMenu;
+            CursosManager.sharedInstance.ShowCursosMenu();
+            
+            break;
+        case GameState.inShop:
+            currentGameState = GameState.inShop;
+            ShopManager.sharedInstance.ShowShop();
+            
+            break;
         }
 
         currentGameState = newGameState;
@@ -101,6 +98,7 @@ public class GameManager : MonoBehaviour
     public void inShop(){
         SetGameState(GameState.inShop);
     }
+
     private void Awake()
     {
         if (sharedInstance == null)

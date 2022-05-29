@@ -16,13 +16,11 @@ public class ShopManager : MonoBehaviour
     4- herramientas
 */
     public int[] precios = {6,6,15,10,6};
+    public int[] nivelArticulos = {1,1,0,1,1};
 
-    public Text textoCombustibre;
-    public Text textoOxigeno;
-    public Text textoaArma;
-    public Text textoEnfriador;
-    public Text textoHerramientas;
-    public Text textoPlatziCoins;
+    public Text textoCombustibre, textoOxigeno, textoaArma, textoEnfriador, textoHerramientas, textoPlatziCoins;
+
+
     public bool armaComprada = false, herramientasCompradas = false;
 
 
@@ -52,26 +50,35 @@ public class ShopManager : MonoBehaviour
     
     //el id de cada articulo es el mismo que el array de los precios
     public void comprarArticulo( int idArticulo){
-        if(precios[idArticulo] <= GameManager.sharedInstance.platziCoins){
+        if(precios[idArticulo] <= GameManager.sharedInstance.platziCoins && 
+           CursosManager.sharedInstance.cursosTomados[1]){
             switch(idArticulo){
             case 0: //combustible
                 // sumar al combustible y a su limite
+                ResourcesManager.sharedInstance.combustible *= 1.5f;
+                ResourcesManager.sharedInstance.maxCombustible *= 1.5f;
 
                 // restando platzicoin y registrado compra
                 GameManager.sharedInstance.platziCoins -= precios[idArticulo];
                 textoPlatziCoins.text = "PlatiZoins: " + GameManager.sharedInstance.platziCoins.ToString();
                 precios[idArticulo] *= 2;
-                textoCombustibre.text = "Precio: "+ precios[idArticulo].ToString();
+                nivelArticulos[idArticulo]++;
+                textoCombustibre.text = "(nvl: "+ nivelArticulos[idArticulo].ToString()
+                                        +") Precio: "+ precios[idArticulo].ToString();
                 break;
             case 1: //oxigeno
                 // sumar al oxigeno y a su limite
+                ResourcesManager.sharedInstance.oxigeno *= 1.5f;
+                ResourcesManager.sharedInstance.maxOxigeno *= 1.5f;
 
 
                 // restando platzicoin y registrado compra
                 GameManager.sharedInstance.platziCoins-= precios[idArticulo];
                 textoPlatziCoins.text = "PlatiZoins: " + GameManager.sharedInstance.platziCoins.ToString();
                 precios[idArticulo] *= 2;
-                textoOxigeno.text = "Precio: "+ precios[idArticulo].ToString();
+                nivelArticulos[idArticulo]++;
+                textoOxigeno.text = "(nvl: "+ nivelArticulos[idArticulo].ToString()
+                                        +") Precio: "+ precios[idArticulo].ToString();
 
                 break;
             case 2: //arma
@@ -86,12 +93,17 @@ public class ShopManager : MonoBehaviour
                 }
                 break;
             case 3: //enfriador
+                ResourcesManager.sharedInstance.maxTemperatura *= 1.3f;
+                ResourcesManager.sharedInstance.velocidadDeCalentado *= .8f;
+                ResourcesManager.sharedInstance.velocidadDeCalentadoCohete *= .8f;
 
             // restando platzicoin y registrado compra
                 GameManager.sharedInstance.platziCoins-= precios[idArticulo];
                 textoPlatziCoins.text = "PlatiZoins: " + GameManager.sharedInstance.platziCoins.ToString();
                 precios[idArticulo] *= 2;
-                textoEnfriador.text = "Precio: "+ precios[idArticulo].ToString();
+                nivelArticulos[idArticulo]++;
+                textoEnfriador.text = "(nvl: "+ nivelArticulos[idArticulo].ToString()
+                                        +") Precio: "+ precios[idArticulo].ToString();
                 break;
             case 4: //herramientas
 

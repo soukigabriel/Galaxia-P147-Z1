@@ -19,7 +19,7 @@ public class GetFuelCan : MonoBehaviour
             {
                 fuelTaken = true;
                 InteractNotification.show = false;
-                ResourcesManager.sharedInstance.ActivatePlayerEnergy();
+                //ResourcesManager.sharedInstance.ActivatePlayerEnergy();
             }
 
         }

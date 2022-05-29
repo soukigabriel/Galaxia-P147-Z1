@@ -8,6 +8,8 @@ public class CabinaDeOxigeno : MonoBehaviour
 {
     BoxCollider m_collider;
     [SerializeField]TipoDeCabina estaCabina;
+    public AudioSource respiracionPersonaje;
+    public AudioSource recargaOxigeno;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,7 @@ public class CabinaDeOxigeno : MonoBehaviour
             {
                 ResourcesManager.sharedInstance.RestablecerRecursos();
             }
+            recargaOxigeno.Play();
         }
     }
 
@@ -40,6 +43,7 @@ public class CabinaDeOxigeno : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame  && other.tag == "Player")
         {
+            respiracionPersonaje.Play();
             InteractNotification.show = true;
         }
     }
@@ -48,6 +52,7 @@ public class CabinaDeOxigeno : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame  && other.tag == "Player")
         {
+            respiracionPersonaje.Stop();
             InteractNotification.show = false;
         }
     }

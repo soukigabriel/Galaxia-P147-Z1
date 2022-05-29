@@ -38,7 +38,6 @@ public class Jetpack : MonoBehaviour
         {
             enUso = false;
         }
-
         /*-------------------------------------------------------------------------------------------*/
     }
 
@@ -86,7 +85,6 @@ public class Jetpack : MonoBehaviour
 
     void PropulsionContinua()
     {
-
         if (Input.GetButton("Fire1") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura /*&& activado[0]*/ && ResourcesManager.sharedInstance.combustible > 0 && isCooling == false)
         {
             playerRB.AddForce(Vector3.up * potenciaContinua, ForceMode.VelocityChange);
@@ -98,7 +96,6 @@ public class Jetpack : MonoBehaviour
 
     void PropulsionCohete()
     {
-
             if (Input.GetButtonDown("Fire2") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura /*&& activado[1]*/ && ResourcesManager.sharedInstance.combustible > 0 && isCooling == false)
             {
                 //playerRB.AddForce(Vector3.up * potenciaCohete, ForceMode.Impulse);
@@ -106,7 +103,6 @@ public class Jetpack : MonoBehaviour
                 enUso = true;
                 ResourcesManager.sharedInstance.temperatura += 50f;
                 ResourcesManager.sharedInstance.combustible -= ResourcesManager.sharedInstance.consumoPropulsionCohete;
-
              }
     }
 

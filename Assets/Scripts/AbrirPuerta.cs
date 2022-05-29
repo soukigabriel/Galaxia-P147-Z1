@@ -11,6 +11,7 @@ public class AbrirPuerta : MonoBehaviour
     BoxCollider m_boxCollider;
     [SerializeField] TipoDePuerta m_tipoDePuerta;
     public bool haSidoAbierta;
+    public AudioSource doorOpen, doorClose;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,8 @@ public class AbrirPuerta : MonoBehaviour
             else
             {
                 m_animator.SetBool(STATE_IS_OPEN, true);
+                doorOpen.Play();
+                doorClose.Stop();
             }
         }
     }
@@ -52,6 +55,8 @@ public class AbrirPuerta : MonoBehaviour
             else
             {
                 m_animator.SetBool(STATE_IS_OPEN, false);
+                doorClose.Play();
+                doorOpen.Stop();
             }
         }
     }
@@ -66,7 +71,7 @@ public class AbrirPuerta : MonoBehaviour
                     haSidoAbierta = true;
                     m_animator.SetBool(STATE_IS_OPEN, true);
                     InteractNotification.show = false;
-
+                    doorOpen.Play();
                     break;
 
                 case TipoDePuerta.puertaHackeable:
@@ -76,7 +81,7 @@ public class AbrirPuerta : MonoBehaviour
                         haSidoAbierta = true;
                         m_animator.SetBool(STATE_IS_OPEN, true);
                         InteractNotification.show = false;
-
+                        doorOpen.Play();
                     }
                     else
                     {

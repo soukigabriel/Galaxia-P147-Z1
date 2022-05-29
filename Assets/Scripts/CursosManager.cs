@@ -20,7 +20,7 @@ public class CursosManager : MonoBehaviour
      2- hacker
      */
     public bool[] cursosTomados = {false, false, false};
-    public GameObject Cortina;
+    public GameObject CortinaDeCursandoCurso;
     public Slider barraProgreso;
     
     /// <summary>
@@ -51,46 +51,36 @@ public class CursosManager : MonoBehaviour
         if(cursosTomados[2])
             cursohacker.gameObject.GetComponent<Image>().color = Color.green;
         
-        Cortina.SetActive(false);
+        CortinaDeCursandoCurso.SetActive(false);
+        NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usandoSalaDeControl_InterfazCursos;
+        GameManager.sharedInstance.inEvent();
+        GameManager.sharedInstance.currentGameState = GameState.courseMenu;
     }
     public void HideCursosMenu(){
-        //if(MenuCursosCanvas.activeSelf)
             MenuCursosCanvas.enabled = (false);
-        //MinijuegoQuiz.SetActive(false);
-        //MenuCursosCanvas.GetComponentInChildren();
     }
 
     public void TomarCursoCohetes(){
         if(!cursosTomados[0] && GameManager.sharedInstance.platziRank >= 300
         && GameManager.sharedInstance.currentGameState == GameState.courseMenu){
-            Cortina.SetActive(true);
+            CortinaDeCursandoCurso.SetActive(true);
             BarraDeCargaManager.sharedInstance.activar("cohetes");
-            /*MinijuegoQuiz.SetActive(true); // activa el canvas del quiz
-            QuizManager.sharedInstance.ShowMinigame("cohetes"); // inicializa segun el curso
-            MenuCursosCanvas.enabled = (false);*/
         }   
     }
 
     public void TomarCursoBitcoin(){
         if(!cursosTomados[1] && GameManager.sharedInstance.platziRank >= 700
             && GameManager.sharedInstance.currentGameState == GameState.courseMenu){
-            Cortina.SetActive(true);
+            CortinaDeCursandoCurso.SetActive(true);
             BarraDeCargaManager.sharedInstance.activar("bitcoin");
-            /*MinijuegoQuiz.SetActive(true);
-            QuizManager.sharedInstance.ShowMinigame("bitcoin");
-            MenuCursosCanvas.enabled = (false);*/
         }
     }
 
     public void TomarCursoHacker(){
         if(!cursosTomados[2] && GameManager.sharedInstance.platziRank >= 800 
             && GameManager.sharedInstance.currentGameState == GameState.courseMenu){
-            Cortina.SetActive(true);
+            CortinaDeCursandoCurso.SetActive(true);
             BarraDeCargaManager.sharedInstance.activar("hacker");
-            
-            /*MinijuegoQuiz.SetActive(true);
-            QuizManager.sharedInstance.ShowMinigame("hacker");
-            MenuCursosCanvas.enabled = (false);*/
         }
     }
 

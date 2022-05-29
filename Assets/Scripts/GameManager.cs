@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { mainMenu, pause, inGame, courseMenu, inShop, gameOver };
+public enum GameState { mainMenu, pause, inGame, courseMenu, inShop, inEvent, gameOver };
 
 public class GameManager : MonoBehaviour
 {
@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour
             ShopManager.sharedInstance.ShowShop();
             
             break;
+
+            case GameState.inEvent:
+            currentGameState = GameState.inEvent;
+            NarrativaManager.sharedInstance.ShowNarrativa();
+            
+            break;
         }
 
         currentGameState = newGameState;
@@ -94,6 +100,10 @@ public class GameManager : MonoBehaviour
 
     public void inShop(){
         SetGameState(GameState.inShop);
+    }
+    public void inEvent()
+    {
+        SetGameState(GameState.inEvent);
     }
 
     private void Awake()

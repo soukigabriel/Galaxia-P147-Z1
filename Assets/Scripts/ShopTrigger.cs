@@ -11,7 +11,7 @@ public class ShopTrigger : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.W)){
+        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E)){
             other.attachedRigidbody.velocity = new Vector3(0,0,0);
             GameManager.sharedInstance.inShop();
         }

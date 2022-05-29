@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum ListaDeEventos
 {
@@ -35,9 +36,10 @@ public class NarrativaManager : MonoBehaviour
     short dialogoActual = 0;
     public bool[] eventosActivados = new bool[13];
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
+
+    public float transitionTime = 1f;
+    public Animator screenTransition;
+    
     void Awake()
     {
 
@@ -77,7 +79,7 @@ public class NarrativaManager : MonoBehaviour
             && (objetosClave[0] && objetosClave[1] && objetosClave[2]))
             eventoActual = ListaDeEventos.enNaveConTodasLasPiezas;
 */
-       m_Animator.SetBool("isRunning", false);
+        m_Animator.SetBool("isRunning", false);
         dialogoActual = 0;
         canvasNarrativa.enabled = true;
         MostrarTextoDelDialogo();
@@ -107,6 +109,7 @@ public class NarrativaManager : MonoBehaviour
             {
                 textoAMostrar.text = dialogos[(int)eventoActual][dialogoActual];
                 dialogoActual++;
+                
             }
             else
             {
@@ -120,6 +123,9 @@ public class NarrativaManager : MonoBehaviour
                     case ListaDeEventos.usandoSalaDeControl_AcabandoCurso:
                         hideNarrativa();
                         break;
+                    case ListaDeEventos.enNaveConTodasLasPiezas:
+                            StartCoroutine(LoadLevel("Game Over-ganaste"));
+                        break; 
                     default:
                         hideNarrativa();
                         GameManager.sharedInstance.StartGame();
@@ -128,6 +134,15 @@ public class NarrativaManager : MonoBehaviour
             }
             break;
         }
+    }
+
+    IEnumerator LoadLevel(string levelName)
+    {
+        //musicAnim.SetTrigger("musicFadeOut");
+        screenTransition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelName);
     }
 
     public void AsignarDialogos()

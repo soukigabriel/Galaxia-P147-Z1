@@ -47,6 +47,17 @@ public class MainMenu : MonoBehaviour
         HideControls();
     }
 
+    public void RegresarControles()
+    {
+        _source.PlayOneShot(_beep);
+        ShowMainLogo();
+        ShowCopyright();
+        ShowMainMenu();
+        HideOptionsMenu();
+        HideCreditsPanel();
+        HideControls();
+    }
+
     public void StartButton()
     {
         _source.PlayOneShot(_beep);
@@ -104,14 +115,8 @@ public class MainMenu : MonoBehaviour
     {
         _source.PlayOneShot(_beep);
         StartCoroutine(ExitGame());
-        //ExitGame();
     }
-/*
-    void StartGame()
-    {
-        EditorSceneManager.LoadScene("Level 1");
-    }
-*/
+
     void ShowMainMenu()
     {
         mainMenu.SetActive(true);
@@ -184,13 +189,18 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator ExitGame()
     {
-        //musicAnim.SetTrigger("musicFadeOut");
         screenTransition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
-    }    
+#endif
+
+
+    }
 
     IEnumerator LoadLevel(string levelName)
     {

@@ -190,6 +190,9 @@ void Awake()
         CursosManager.sharedInstance.cursosTomados[idCurso] = true;
         CursosManager.sharedInstance.ShowCursosMenu();
         HideMinigame();
+        HideMinigame();
+        NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usandoSalaDeControl_AcabandoCurso;
+        GameManager.sharedInstance.inEvent();
         /*------------------------------------------------------------*/
     }
 

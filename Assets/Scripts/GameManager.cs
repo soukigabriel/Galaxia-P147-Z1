@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { mainMenu, pause, inGame, courseMenu, inShop, gameOver };
+public enum GameState { mainMenu, pause, inGame, courseMenu, inShop, inEvent, gameOver };
+
 
 public class GameManager : MonoBehaviour
 {
@@ -55,36 +56,42 @@ public class GameManager : MonoBehaviour
     {
         switch (newGameState)
         {
-        case GameState.mainMenu:
-            currentGameState = GameState.mainMenu;
-            //Implementar logica de menu principal
-            break;
-        case GameState.pause:
-            currentGameState = GameState.pause;
-            //Implementar logica de menu de pausa
+            case GameState.mainMenu:
+                currentGameState = GameState.mainMenu;
+                //Implementar logica de menu principal
+                break;
+            case GameState.pause:
+                currentGameState = GameState.pause;
+                //Implementar logica de menu de pausa
 
-            break;
-        case GameState.inGame:
-            //Implementar logica de empezar el juego
-            currentGameState = GameState.inGame;
-            //CursosManager.sharedInstance.HideCursosMenu();
-            //ShopManager.sharedInstance.HideShop();
-            break;
-        case GameState.gameOver:
-            currentGameState = GameState.gameOver;
-            //Implementar logica de game over
-            
-            break;
-        case GameState.courseMenu:
-            currentGameState = GameState.courseMenu;
-            CursosManager.sharedInstance.ShowCursosMenu();
-            
-            break;
-        case GameState.inShop:
-            currentGameState = GameState.inShop;
-            ShopManager.sharedInstance.ShowShop();
-            
-            break;
+                break;
+            case GameState.inGame:
+                //Implementar logica de empezar el juego
+                currentGameState = GameState.inGame;
+                CursosManager.sharedInstance.HideCursosMenu();
+                ShopManager.sharedInstance.HideShop();
+                break;
+            case GameState.gameOver:
+                currentGameState = GameState.gameOver;
+                //Implementar logica de game over
+
+                break;
+            case GameState.courseMenu:
+                currentGameState = GameState.courseMenu;
+                CursosManager.sharedInstance.ShowCursosMenu();
+
+                break;
+            case GameState.inShop:
+                currentGameState = GameState.inShop;
+                ShopManager.sharedInstance.ShowShop();
+
+                break;
+
+            case GameState.inEvent:
+                currentGameState = GameState.inEvent;
+                NarrativaManager.sharedInstance.ShowNarrativa();
+
+                break;
         }
 
         currentGameState = newGameState;
@@ -95,8 +102,14 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.courseMenu);
     }
 
-    public void inShop(){
+    public void inShop()
+    {
         SetGameState(GameState.inShop);
+    }
+
+    public void inEvent()
+    {
+        SetGameState(GameState.inEvent);
     }
 
     private void Awake()

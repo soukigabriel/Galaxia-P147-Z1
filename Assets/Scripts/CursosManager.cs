@@ -52,12 +52,13 @@ public class CursosManager : MonoBehaviour
             cursohacker.gameObject.GetComponent<Image>().color = Color.green;
         
         Cortina.SetActive(false);
+        NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usandoSalaDeControl_InterfazCursos;
+        GameManager.sharedInstance.inEvent();
+        GameManager.sharedInstance.currentGameState = GameState.courseMenu;
     }
     public void HideCursosMenu(){
-        //if(MenuCursosCanvas.activeSelf)
             MenuCursosCanvas.enabled = (false);
-        //MinijuegoQuiz.SetActive(false);
-        //MenuCursosCanvas.GetComponentInChildren();
+
     }
 
     public void TomarCursoCohetes(){

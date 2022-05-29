@@ -50,7 +50,8 @@ public class ShopManager : MonoBehaviour
     
     //el id de cada articulo es el mismo que el array de los precios
     public void comprarArticulo( int idArticulo){
-        if(precios[idArticulo] <= GameManager.sharedInstance.platziCoins){
+        if(precios[idArticulo] <= GameManager.sharedInstance.platziCoins && 
+           CursosManager.sharedInstance.cursosTomados[1]){
             switch(idArticulo){
             case 0: //combustible
                 // sumar al combustible y a su limite

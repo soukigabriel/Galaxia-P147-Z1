@@ -78,6 +78,6 @@ public static BarraDeCargaManager sharedInstance;
         float porcentaje;
         porcentaje = actual/max;
         barraProgreso.value = cuenta;
-        texto.text = "aprendiendo... %" +porcentaje*100;
+        texto.text = "aprendiendo... %" +(porcentaje*100).ToString("f2");
     }
 }

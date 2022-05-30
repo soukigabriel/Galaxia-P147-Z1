@@ -66,8 +66,28 @@ public class NarrativaManager : MonoBehaviour
 
    public void ShowNarrativa()
    {
+       switch(eventoActual){
+                    case ListaDeEventos.usarBitcoinsConCurso:
+                    case ListaDeEventos.usarBitcoinsSinCurso:
+                    case ListaDeEventos.usarHackeoConCurso:
+                    case ListaDeEventos.usarHackeoSinCurso:
+                    case ListaDeEventos.usandoSalaDeControl_InterfazCursos:
+                    case ListaDeEventos.usandoSalaDeControl_AcabandoCurso:
+                        hideNarrativa();
+                        break;
+                    case ListaDeEventos.enNaveSinSuficientesPiezas:
+                    case ListaDeEventos.enNaveConTodasLasPiezas:
+                        if (objetosClave[0] && objetosClave[1] && objetosClave[2])
+                            StartCoroutine(LoadLevel("Game Over-ganaste"));
+                        break; 
+                    default:
+                        hideNarrativa();
+                        GameManager.sharedInstance.StartGame();
+                    break;
+                }
+
       if(!eventosActivados[(int) eventoActual]){
-         /*if((eventoActual == (ListaDeEventos)3 || eventoActual == (ListaDeEventos)4)
+         if((eventoActual == (ListaDeEventos)3 || eventoActual == (ListaDeEventos)4)
          && CursosManager.sharedInstance.cursosTomados[1])
             eventoActual = ListaDeEventos.usarBitcoinsConCurso;
 
@@ -78,13 +98,13 @@ public class NarrativaManager : MonoBehaviour
          if((eventoActual == (ListaDeEventos)11 || eventoActual == (ListaDeEventos)12)
             && (objetosClave[0] && objetosClave[1] && objetosClave[2]))
             eventoActual = ListaDeEventos.enNaveConTodasLasPiezas;
-*/
+
         m_Animator.SetBool("isRunning", false);
         dialogoActual = 0;
         canvasNarrativa.enabled = true;
         MostrarTextoDelDialogo();
 
-         canvasNarrativa.sortingOrder = 1;
+         canvasNarrativa.sortingOrder = 2;
       }
       else{
          hideNarrativa();
@@ -115,10 +135,14 @@ public class NarrativaManager : MonoBehaviour
             {
                 eventosActivados[(int)eventoActual] = true;
                 switch(eventoActual){
-                    case ListaDeEventos.usarBitcoinsConCurso:
-                    case ListaDeEventos.usarBitcoinsSinCurso:
-                    case ListaDeEventos.usarHackeoConCurso:
                     case ListaDeEventos.usarHackeoSinCurso:
+                    case ListaDeEventos.usarBitcoinsSinCurso:
+                    case ListaDeEventos.enNaveSinSuficientesPiezas:
+                        eventosActivados[(int)eventoActual] = false;                        
+                        break;
+
+                    case ListaDeEventos.usarBitcoinsConCurso:
+                    case ListaDeEventos.usarHackeoConCurso:
                     case ListaDeEventos.usandoSalaDeControl_InterfazCursos:
                     case ListaDeEventos.usandoSalaDeControl_AcabandoCurso:
                         hideNarrativa();

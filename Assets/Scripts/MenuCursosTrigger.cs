@@ -13,7 +13,7 @@ public class MenuCursosTrigger : MonoBehaviour
     {
         
         /*if (other.tag == "Player" && Input.GetButtonDown("Accionar"))*/
-        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.W)){
+        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.E)){
             other.attachedRigidbody.velocity = new Vector3(0,0,0);
             GameManager.sharedInstance.CourseMenu();
         }

@@ -10,6 +10,7 @@ public class ResourcesManager : MonoBehaviour
         oxigeno = 5000, maxOxigeno = 5000, combustible = 1300, maxCombustible = 1300, 
         velocidadDeCalentado = 1.8f, velocidadDeConsumoCombustible = 2.5f, 
         velocidadDeCalentadoCohete= 45f, consumoPropulsionCohete = 170;
+    public Morir morirScript;
 
     private void Start()
     {
@@ -25,7 +26,16 @@ public class ResourcesManager : MonoBehaviour
 
     private void Update()
     {
+        VerificarOxigeno(oxigeno);
         ClampValues();
+    }
+
+    void VerificarOxigeno(float oxigenoActual)
+    {
+        if(oxigenoActual <= 0f)
+        {
+            morirScript.isDead = true;
+        }
     }
 
     void ClampValues()

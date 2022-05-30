@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jetpack : MonoBehaviour
 {
     //public bool[] activado = { false, false };
+    public bool isDead;
     public bool enUso {get; set;} = false;
     public bool isCooling;
     public float potenciaContinua = .25f, potenciaCohete = 45f;
@@ -28,6 +29,7 @@ public class Jetpack : MonoBehaviour
     {
         m_animator.SetBool(STATE_PROPULSANDOSE, false);
         isCooling = false;
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -44,8 +46,6 @@ public class Jetpack : MonoBehaviour
         }
         /*-------------------------------------------------------------------------------------------*/
     }
-
-
 
     private void FixedUpdate()
     {

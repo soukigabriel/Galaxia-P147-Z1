@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState { mainMenu, pause, inGame, courseMenu, inShop, inEvent, gameOver };
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager sharedInstance;
     public GameState currentGameState;
     public GameObject CanvasCursos, CanvasMinijuegoQuiz, CanvasTienda;
+    const string SCENE_GAME_OVER = "Game Over";
 
     public AudioSource backgroundMusic;
 
@@ -101,7 +103,10 @@ public class GameManager : MonoBehaviour
 
                 break;
             case GameState.gameOver:
+
                 currentGameState = GameState.gameOver;
+                SceneManager.LoadScene(SCENE_GAME_OVER);
+
                 //Implementar logica de game over
 
                 break;

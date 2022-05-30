@@ -49,7 +49,11 @@ public class GameOverSceneManager : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     IEnumerator LoadLevel(string levelName)

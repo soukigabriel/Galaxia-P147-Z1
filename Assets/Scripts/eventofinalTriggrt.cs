@@ -8,7 +8,7 @@ public class eventofinalTriggrt : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player"  && Input.GetKey(KeyCode.E) && NarrativaManager.sharedInstance.eventosActivados[10])
         {

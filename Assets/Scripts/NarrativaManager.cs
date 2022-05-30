@@ -35,7 +35,7 @@ public class NarrativaManager : MonoBehaviour
     public bool[] objetosClave = {false,false,false};
     short dialogoActual = 0;
     public bool[] eventosActivados = new bool[13];
-
+private bool gamedone=false;
 
     public float transitionTime = 1f;
     public Animator screenTransition;
@@ -95,7 +95,7 @@ public class NarrativaManager : MonoBehaviour
             && CursosManager.sharedInstance.cursosTomados[2])
             eventoActual = ListaDeEventos.usarHackeoConCurso;
 
-         if((eventoActual == (ListaDeEventos)11 || eventoActual == (ListaDeEventos)12)
+         if((eventoActual == (ListaDeEventos)11 )
             && (objetosClave[0] && objetosClave[1] && objetosClave[2]))
             eventoActual = ListaDeEventos.enNaveConTodasLasPiezas;
 
@@ -138,7 +138,9 @@ public class NarrativaManager : MonoBehaviour
                     case ListaDeEventos.usarHackeoSinCurso:
                     case ListaDeEventos.usarBitcoinsSinCurso:
                     case ListaDeEventos.enNaveSinSuficientesPiezas:
-                        eventosActivados[(int)eventoActual] = false;                        
+                        eventosActivados[(int)eventoActual] = false;
+                        hideNarrativa();
+                        GameManager.sharedInstance.StartGame();                        
                         break;
 
                     case ListaDeEventos.usarBitcoinsConCurso:
@@ -148,7 +150,9 @@ public class NarrativaManager : MonoBehaviour
                         hideNarrativa();
                         break;
                     case ListaDeEventos.enNaveConTodasLasPiezas:
-                            StartCoroutine(LoadLevel("Game Over-ganaste"));
+                            if(gamedone){
+                                StartCoroutine(LoadLevel("Game Over-ganaste"));
+                            }
                         break; 
                     default:
                         hideNarrativa();

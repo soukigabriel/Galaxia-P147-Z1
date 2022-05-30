@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: e52415e39e9456343b677c16c012fd3e,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -31528,6 +31528,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb6f1f62de482a45a2173e5e6d46f8c, type: 3}
+--- !u!1 &1297206949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9207929218455196395, guid: 889aa82146acccb45b63cdc9871b23b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1990970674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1297206950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297206949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3cb29e027a072141adbe3ea51bcc5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1298507247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48260,7 +48278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CabinaDeBitcoins2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2090028759842023024, guid: 889aa82146acccb45b63cdc9871b23b8, type: 3}
+    - {fileID: 1057343621455403662, guid: 889aa82146acccb45b63cdc9871b23b8, type: 3}
+    - {fileID: 2274497379706043869, guid: 889aa82146acccb45b63cdc9871b23b8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 889aa82146acccb45b63cdc9871b23b8, type: 3}
 --- !u!1001 &1999968824
 PrefabInstance:
@@ -51057,7 +51078,7 @@ Transform:
   - {fileID: 1343633536}
   - {fileID: 908510523}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2075835086
 PrefabInstance:

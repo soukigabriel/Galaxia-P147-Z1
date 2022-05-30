@@ -96,7 +96,7 @@ public class PauseMenu : MonoBehaviour
     public void ExitButton()
     {
         _source.PlayOneShot(_beep);
-        StartCoroutine(ExitGame());
+        ExitGame();
     }
 
     public void BackToMainMenu()
@@ -162,10 +162,8 @@ public class PauseMenu : MonoBehaviour
         _source.PlayOneShot(_beep);
     }
 
-    IEnumerator ExitGame()
+    void ExitGame()
     {
-        yield return new WaitForSeconds(transitionTime);
-
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

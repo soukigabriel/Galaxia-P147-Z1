@@ -96,7 +96,8 @@ public class PauseMenu : MonoBehaviour
     public void ExitButton()
     {
         _source.PlayOneShot(_beep);
-        ExitGame();
+        ScreenTransitionImage.SetActive(true);
+        StartCoroutine( ExitGame()) ;
     }
 
     public void BackToMainMenu()
@@ -162,8 +163,13 @@ public class PauseMenu : MonoBehaviour
         _source.PlayOneShot(_beep);
     }
 
-    void ExitGame()
+    IEnumerator ExitGame()
     {
+        Time.timeScale = 1f;
+        screenTransition.SetTrigger("Start");
+
+        yield return new WaitForSecondsRealtime(transitionTime);
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

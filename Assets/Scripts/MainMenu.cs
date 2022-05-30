@@ -62,7 +62,6 @@ public class MainMenu : MonoBehaviour
     {
         _source.PlayOneShot(_beep);
         StartCoroutine(LoadLevel("Level 1"));
-        //StartGame();
     }
 
     public void OptionsButton()
@@ -176,12 +175,7 @@ public class MainMenu : MonoBehaviour
     {
         controles.SetActive(false);
     }
-/*
-    void ExitGame()
-    {
-        Application.Quit();
-    }
-*/
+
     void playBeep()
     {
         _source.PlayOneShot(_beep);
@@ -191,7 +185,7 @@ public class MainMenu : MonoBehaviour
     {
         screenTransition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSecondsRealtime(transitionTime);
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

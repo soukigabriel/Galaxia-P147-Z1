@@ -37,7 +37,7 @@ public class NarrativaManager : MonoBehaviour
     public bool[] eventosActivados = new bool[13];
 private bool gamedone=false;
 
-    public float transitionTime = 1f;
+    public float transitionTime = 3f;
     public Animator screenTransition;
     
     void Awake()

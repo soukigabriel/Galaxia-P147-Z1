@@ -7,6 +7,7 @@ public class MonedaTrigger : MonoBehaviour
 
     SpriteRenderer sprite;
     CapsuleCollider itemCollider;
+    [SerializeField] AudioSource sonidoMoneda;
     //bool haSidoRecolectada;
 
     void Awake()
@@ -25,6 +26,7 @@ public class MonedaTrigger : MonoBehaviour
         Debug.Log("hola");
         if(other.tag == "Player"){
             Recolecctado();
+            sonidoMoneda.Play();
         }
     }
 

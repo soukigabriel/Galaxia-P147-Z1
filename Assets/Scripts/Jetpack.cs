@@ -7,12 +7,13 @@ public class Jetpack : MonoBehaviour
     //public bool[] activado = { false, false };
     public bool isDead;
     public bool enUso {get; set;} = false;
-    public bool isCooling;
+    public bool isCooling, soundPlaying;
     public float potenciaContinua = .25f, potenciaCohete = 45f;
     // puede haber un objeto que mejore la potencia
     Rigidbody playerRB;
     [SerializeField] Animator m_animator;
-    const string STATE_PROPULSANDOSE = "propulsandose";
+    const string STATE_PROPULSANDOSE = "propulsandose 0";
+    [SerializeField]AudioSource sonidoJetpack;
 
 
     /// <summary>
@@ -30,6 +31,7 @@ public class Jetpack : MonoBehaviour
         m_animator.SetBool(STATE_PROPULSANDOSE, false);
         isCooling = false;
         isDead = false;
+        soundPlaying = false;
     }
 
     // Update is called once per frame
@@ -42,7 +44,10 @@ public class Jetpack : MonoBehaviour
         if ((Input.GetButtonUp("Fire1") || Input.GetButtonUp("Fire2")) || isCooling)
         {
             enUso = false;
-            m_animator.SetBool(STATE_PROPULSANDOSE, false);
+            soundPlaying = false;
+
+            //m_animator.SetBool(STATE_PROPULSANDOSE, false);
+            sonidoJetpack.Stop();
         }
         /*-------------------------------------------------------------------------------------------*/
     }
@@ -79,7 +84,12 @@ public class Jetpack : MonoBehaviour
     void PropulsionContinua()
     {
 
-            if (Input.GetButton("Fire1") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura /*&& activado[0]*/ && ResourcesManager.sharedInstance.combustible > 0  && isCooling == false)
+            if (Input.GetButton("Fire1") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura && ResourcesManager.sharedInstance.combustible > 0 && isCooling == false && !soundPlaying)
+            {
+                sonidoJetpack.Play();
+            soundPlaying = true;
+            }
+        if (Input.GetButton("Fire1") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura && ResourcesManager.sharedInstance.combustible > 0  && isCooling == false)
             {
                 playerRB.AddForce(Vector3.up * potenciaContinua, ForceMode.VelocityChange);
                 /*ResourcesManager.sharedInstance.temperatura+=1.8f;
@@ -87,25 +97,25 @@ public class Jetpack : MonoBehaviour
                 ResourcesManager.sharedInstance.temperatura+= ResourcesManager.sharedInstance.velocidadDeCalentado;
                 ResourcesManager.sharedInstance.combustible-= ResourcesManager.sharedInstance.velocidadDeConsumoCombustible;
                 enUso = true;
-            m_animator.SetBool(STATE_PROPULSANDOSE, true);
-
+            m_animator.SetTrigger(STATE_PROPULSANDOSE);
         }
     }
 
     void PropulsionCohete()
     {
 
-            if (Input.GetButtonDown("Fire2") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura /*&& activado[1]*/ && ResourcesManager.sharedInstance.combustible > 0 && isCooling == false)
+            if (Input.GetButtonDown("Fire2") && ResourcesManager.sharedInstance.temperatura < ResourcesManager.sharedInstance.maxTemperatura && ResourcesManager.sharedInstance.combustible > 0 && isCooling == false)
             {
                 //playerRB.AddForce(Vector3.up * potenciaCohete, ForceMode.Impulse);
                 playerRB.velocity = new Vector3(playerRB.velocity.x,playerRB.velocity.y + potenciaCohete, playerRB.velocity.z);
                 enUso = true;
-            m_animator.SetBool(STATE_PROPULSANDOSE, true);
+            m_animator.SetTrigger(STATE_PROPULSANDOSE);
 
             /*ResourcesManager.sharedInstance.temperatura += 50f;
             ResourcesManager.sharedInstance.combustible -= ResourcesManager.sharedInstance.consumoPropulsionCohete;//Originales */
             ResourcesManager.sharedInstance.temperatura += ResourcesManager.sharedInstance.velocidadDeCalentadoCohete;
                 ResourcesManager.sharedInstance.combustible -= ResourcesManager.sharedInstance.consumoPropulsionCohete;
+            sonidoJetpack.Play();
             }
     }
 

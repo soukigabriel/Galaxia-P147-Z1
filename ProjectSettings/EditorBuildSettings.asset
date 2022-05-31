@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: bdeefaaba9a3ffd4c8b19d52b155cc3b
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Quiz.unity
+    guid: 6db6b72ddabca714799727668487070e
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: 7007fd72ae5b76f4bafe9e402521e5ef
+  - enabled: 1
+    path: Assets/Scenes/Game Over-ganaste.unity
+    guid: 63a5300884f5fce4caf258377e7bd2bf
   m_configObjects: {}

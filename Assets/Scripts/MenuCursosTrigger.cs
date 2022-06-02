@@ -19,5 +19,20 @@ public class MenuCursosTrigger : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && other.tag == "Player")
+        {
+            InteractNotification.show = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && other.tag == "Player")
+        {
+            InteractNotification.show = false;
+        }
+    }
 
 }

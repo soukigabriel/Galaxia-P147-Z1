@@ -75,9 +75,17 @@ public class AbrirPuerta : MonoBehaviour
                     break;
 
                 case TipoDePuerta.puertaHackeable:
-                    if (CursosManager.sharedInstance.cursosTomados[2])
+                    if (CursosManager.sharedInstance.cursosTomados[2] && !NarrativaManager.sharedInstance.eventosActivados[6])
                     {
-                        Debug.Log("Sabes Hackear");
+                        NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usarHackeoConCurso;
+                        GameManager.sharedInstance.inEvent();
+                        haSidoAbierta = true;
+                        m_animator.SetBool(STATE_IS_OPEN, true);
+                        InteractNotification.show = false;
+                        doorOpen.Play();
+                    }
+                    else if(CursosManager.sharedInstance.cursosTomados[2] && NarrativaManager.sharedInstance.eventosActivados[6])
+                    {
                         haSidoAbierta = true;
                         m_animator.SetBool(STATE_IS_OPEN, true);
                         InteractNotification.show = false;
@@ -85,7 +93,8 @@ public class AbrirPuerta : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("NO SABES HACKEAR");
+                        NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usarHackeoSinCurso;
+                        GameManager.sharedInstance.inEvent();
                     }
                     break;
             }

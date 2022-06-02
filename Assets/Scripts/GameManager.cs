@@ -87,7 +87,10 @@ public class GameManager : MonoBehaviour
                 currentGameState = GameState.pause;
                 break;
             case GameState.inGame:
-
+                if(currentGameState == GameState.inShop || currentGameState == GameState.inEvent || currentGameState == GameState.courseMenu)
+                {
+                    PauseMenu.sharedInstance.ShowHUD();
+                }
                 if (currentGameState == GameState.pause)
                 {
                     PauseMenu.sharedInstance.ResumeGame();
@@ -98,7 +101,6 @@ public class GameManager : MonoBehaviour
                     CursosManager.sharedInstance.HideCursosMenu();
                     ShopManager.sharedInstance.HideShop();
                 }
-
                 currentGameState = GameState.inGame;
 
                 break;
@@ -113,12 +115,12 @@ public class GameManager : MonoBehaviour
             case GameState.courseMenu:
                 currentGameState = GameState.courseMenu;
                 CursosManager.sharedInstance.ShowCursosMenu();
-
+                PauseMenu.sharedInstance.HideHUD();
                 break;
             case GameState.inShop:
                 currentGameState = GameState.inShop;
+                PauseMenu.sharedInstance.HideHUD();
                 ShopManager.sharedInstance.ShowShop();
-
                 break;
 
             case GameState.inEvent:
@@ -127,7 +129,6 @@ public class GameManager : MonoBehaviour
 
                 break;
         }
-
         currentGameState = newGameState;
     }
 

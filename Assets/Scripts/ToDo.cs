@@ -10,9 +10,13 @@
  * 
  * Arreglar la interfaz del menu de cursos
  * 
+ * Esconder el HUD al abrir la tienda
  * 
+ * Poner mas monedas
  * 
+ * Eliminar la pistola de la tienda
  * 
+ * Que los botones de los cursos cambien de color al estar en highlight
  * 
  */
 

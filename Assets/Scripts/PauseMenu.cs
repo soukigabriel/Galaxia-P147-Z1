@@ -80,8 +80,8 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
+        _source.PlayOneShot(_beep);
         ScreenTransitionImage.SetActive(true);
-
         GameManager.sharedInstance.MainMenu();
     }
 

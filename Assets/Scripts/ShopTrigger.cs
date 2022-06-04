@@ -11,9 +11,29 @@ public class ShopTrigger : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E)){
+        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E))
+        {
+
             other.attachedRigidbody.velocity = new Vector3(0,0,0);
+            InteractNotification.show = false;
             GameManager.sharedInstance.inShop();
+        }
+
+    }
+
+        private void OnTriggerEnter(Collider other)
+    {
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame  && other.tag == "Player")
+        {
+            InteractNotification.show = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && other.tag == "Player")
+        {
+            InteractNotification.show = false;
         }
     }
 }

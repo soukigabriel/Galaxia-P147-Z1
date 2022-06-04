@@ -12,6 +12,7 @@ public class InteractNotification : MonoBehaviour
     TMP_Text interactText;
     public static bool show;
     Color bgColor, textColor;
+    public static InteractNotification sharedInstance;
 
     // Start is called before the first frame update
     void Start()

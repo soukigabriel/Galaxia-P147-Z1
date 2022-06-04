@@ -52,9 +52,13 @@ public class CursosManager : MonoBehaviour
             cursohacker.gameObject.GetComponent<Image>().color = Color.green;
         
         Cortina.SetActive(false);
-        NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usandoSalaDeControl_InterfazCursos;
-        GameManager.sharedInstance.inEvent();
-        GameManager.sharedInstance.currentGameState = GameState.courseMenu;
+        if (!NarrativaManager.sharedInstance.eventosActivados[
+                (int)ListaDeEventos.usandoSalaDeControl_InterfazCursos]){
+                    NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usandoSalaDeControl_InterfazCursos;
+                    GameManager.sharedInstance.inEvent();
+                }
+            
+        //GameManager.sharedInstance.currentGameState = GameState.courseMenu;
     }
     public void HideCursosMenu(){
             MenuCursosCanvas.enabled = (false);
@@ -97,6 +101,8 @@ public class CursosManager : MonoBehaviour
 
     public void BotonSalir(){
         HideCursosMenu();
+        InteractNotification.show = true;
+
         GameManager.sharedInstance.StartGame();   
     }
 

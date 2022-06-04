@@ -13,11 +13,28 @@ public class MenuCursosTrigger : MonoBehaviour
     {
         
         /*if (other.tag == "Player" && Input.GetButtonDown("Accionar"))*/
-        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.E)){
+        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.E) 
+        && NarrativaManager.sharedInstance.eventosActivados[(int)ListaDeEventos.usandoSalaDeControl]){
             other.attachedRigidbody.velocity = new Vector3(0,0,0);
+            InteractNotification.show = false;
             GameManager.sharedInstance.CourseMenu();
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && other.tag == "Player")
+        {
+            InteractNotification.show = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && other.tag == "Player")
+        {
+            InteractNotification.show = false;
+        }
+    }
 
 }

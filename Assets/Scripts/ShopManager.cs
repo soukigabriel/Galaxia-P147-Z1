@@ -42,8 +42,17 @@ public class ShopManager : MonoBehaviour
         textoPlatziCoins.text = "PlatziCoins: " + GameManager.sharedInstance.platziCoins.ToString();
         MaquinaExpendedora.enabled = (true);
 
-        NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usarBitcoinsSinCurso;
-        GameManager.sharedInstance.inEvent();
+        if (!NarrativaManager.sharedInstance.eventosActivados[
+                (int)ListaDeEventos.usarBitcoinsConCurso])
+        {
+            if(!CursosManager.sharedInstance.cursosTomados[1])
+                NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usarBitcoinsSinCurso;
+            else
+                NarrativaManager.sharedInstance.eventoActual = ListaDeEventos.usarBitcoinsConCurso;
+
+            GameManager.sharedInstance.inEvent();
+        }
+        
     }
 
     public void HideShop(){
@@ -87,7 +96,7 @@ public class ShopManager : MonoBehaviour
             case 2: //arma
 
             // restando platzicoin y registrado compra, evitando una segunda compra
-                if(!armaComprada){
+                if(false){
                     armaComprada = true;
                     GameManager.sharedInstance.platziCoins-= precios[idArticulo];
                     textoPlatziCoins.text = "PlatiZoins: " + GameManager.sharedInstance.platziCoins.ToString();

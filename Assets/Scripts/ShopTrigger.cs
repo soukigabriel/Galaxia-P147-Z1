@@ -15,6 +15,7 @@ public class ShopTrigger : MonoBehaviour
         {
 
             other.attachedRigidbody.velocity = new Vector3(0,0,0);
+            InteractNotification.show = false;
             GameManager.sharedInstance.inShop();
         }
 

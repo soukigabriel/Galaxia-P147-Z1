@@ -37,7 +37,7 @@ public class NarrativaManager : MonoBehaviour
     public bool[] eventosActivados = new bool[13];
     private bool gamedone=false;
 
-    public float transitionTime = 3f;
+    public float transitionTime = 2f;
     public Animator screenTransition;
     
     void Awake()
@@ -56,17 +56,9 @@ public class NarrativaManager : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
-    void Start()
-    {
-    }
-
    public void ShowNarrativa()
    {
-       switch(eventoActual){
+       /*switch(eventoActual){
                     case ListaDeEventos.usarBitcoinsConCurso:
                     case ListaDeEventos.usarBitcoinsSinCurso:
                     case ListaDeEventos.usarHackeoConCurso:
@@ -84,18 +76,18 @@ public class NarrativaManager : MonoBehaviour
                         hideNarrativa();
                         GameManager.sharedInstance.StartGame();
                     break;
-                }
+                }*/
 
-      if(!eventosActivados[(int) eventoActual]){
-         if((eventoActual == (ListaDeEventos)3 || eventoActual == (ListaDeEventos)4)
-         && CursosManager.sharedInstance.cursosTomados[1])
+    if(!eventosActivados[(int) eventoActual]){
+        if((eventoActual == (ListaDeEventos)3 || eventoActual == (ListaDeEventos)4)
+        && CursosManager.sharedInstance.cursosTomados[1])
             eventoActual = ListaDeEventos.usarBitcoinsConCurso;
 
-         if((eventoActual == (ListaDeEventos)5 || eventoActual == (ListaDeEventos)6)
+        if((eventoActual == (ListaDeEventos)5 || eventoActual == (ListaDeEventos)6)
             && CursosManager.sharedInstance.cursosTomados[2])
             eventoActual = ListaDeEventos.usarHackeoConCurso;
 
-         if((eventoActual == (ListaDeEventos)11 )
+        if((eventoActual == (ListaDeEventos)11 )
             && (objetosClave[0] && objetosClave[1] && objetosClave[2]))
             eventoActual = ListaDeEventos.enNaveConTodasLasPiezas;
 
@@ -104,12 +96,12 @@ public class NarrativaManager : MonoBehaviour
         canvasNarrativa.enabled = true;
         MostrarTextoDelDialogo();
 
-         canvasNarrativa.sortingOrder = 2;
-      }
-      else{
-         hideNarrativa();
-
-      }
+        canvasNarrativa.sortingOrder = 2;
+    }
+    else{
+        hideNarrativa();
+        GameManager.sharedInstance.StartGame();
+    }
    }
 
     public void hideNarrativa()
@@ -146,19 +138,19 @@ public class NarrativaManager : MonoBehaviour
                         GameManager.sharedInstance.StartGame();                        
                         break;
                     case ListaDeEventos.usarBitcoinsConCurso:
-                        case ListaDeEventos.usandoSalaDeControl_InterfazCursos:
+                    case ListaDeEventos.usandoSalaDeControl_InterfazCursos:
                     case ListaDeEventos.usandoSalaDeControl_AcabandoCurso:
                         hideNarrativa();
                         break;
                     case ListaDeEventos.enNaveConTodasLasPiezas:
-                            if(gamedone){
+                            //if(gamedone){
                                 StartCoroutine(LoadLevel("Game Over-ganaste"));
-                            }
+                            //}
                         break; 
-                    case ListaDeEventos.usarHackeoConCurso:
+                   /* case ListaDeEventos.usarHackeoConCurso:
                             hideNarrativa();
                             GameManager.sharedInstance.StartGame();
-                         break;
+                         break;*/
                     default:
                         hideNarrativa();
                         GameManager.sharedInstance.StartGame();
@@ -182,7 +174,7 @@ public class NarrativaManager : MonoBehaviour
     {
         // Al momneto de ir creando los dialogos para cada escena, se van agregando a la lista de dialogos
         string[] inicioJuego = {"Uhh, no puede ser.",
-                "Que mala suerte la mía que mi nave se estropeara justo cuando regresaba de mis vacaciones... Elon Musk Jr me oirá muy bien cuando regrese… .",
+                "Que mala suerte la mía, que mi nave se estropeara justo cuando regresaba de mis vacaciones... Elon Musk Jr me oirá muy bien cuando regrese… .",
                 "Si es que regreso. ",
                 "… Este lugar parece desierto, ojalá me equivoque y haya alguna colonia cerca que me pueda ayudar… si no, estoy muerta.",
                 "Lo bueno es que esta nave me puede proporcionar suficiente oxígeno, pero mi Jet pack no tiene combustible.",
